@@ -24,6 +24,8 @@ class Item(models.Model):
     is_available = models.BooleanField(default=False)
     is_negotiable = models.BooleanField(default=False)
     location= models.CharField(max_length=255)
+    phone_number = models.CharField(max_length=15, blank=True, null=True)
+    email = models.EmailField(blank=True, null=True)
     created_by = models.ForeignKey(User, related_name='items' , on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
 
