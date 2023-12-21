@@ -13,7 +13,7 @@
 </head>
 
 <body>
-    <nav class="px-6 py-6 flex justify-between items-center border-b border-gray-200">
+    <nav class="px-6 py-6 flex justify-between items-center border-b border-gray-200 bg-gray-100">
         <a href="/" class="text-xl font-semibold" >NestFixer</a>
 
         <div class="space-x-6">
@@ -21,8 +21,11 @@
             <a href="{% url 'item:items' %}" class="text-lg font-semibold hover:text-gray-500">Browse</a>
 
         {% if request.user.is_authenticated %}
+            <span class="text-lg font-semibold">Hi, {{ request.user.username }}</span>
             <a href="{%url 'conversation:inbox'%}" class="px-6 py-3 text-lg font-semibold bg-teal-500 text-white rounded-xl hover:bg-teal-700">Inbox</a>
             <a href="{% url 'dashboard:index' %}" class="px-6 py-3 text-lg font-semibold bg-yellow-500 text-white rounded-xl hover:bg-gray-700">Dashboard</a>
+            <a href="{% url 'core:edit_profile' %}" class="px-6 py-3 text-lg font-semibold bg-blue-500 text-white rounded-xl hover:bg-blue-700">Edit Profile</a>
+            <a href="{% url 'core:logout' %}" class="px-6 py-3 text-lg font-semibold bg-red-500 text-white rounded-xl hover:bg-red-700">Logout</a>
 
         {% else %}
             <a href="{% url 'core:signup' %}" class="px-6 py-3 text-lg font-semibold bg-teal-500 text-white rounded-xl hover:bg-teal-700">Sign Up</a>
@@ -52,6 +55,7 @@
                 <li><a href="{% url 'core:privacy' %}" class="text-lg text-teal-500 hover:text-gray-700 ">Privacy Policy</a></li>
                 <li><a href="{% url 'core:terms' %}" class="text-lg text-teal-500 hover:text-gray-700 ">Terms of uses</a></li>
                 <li><a href="{% url 'core:faq' %}" class="text-lg text-teal-500 hover:text-gray-700 ">FAQs</a></li>
+                <li><a href="mailto:kripesh82@gmail.com" class="text-lg text-teal-500 hover:text-gray-700">Report Bugs</a></li>
             </ul>
         </div>
     </footer>

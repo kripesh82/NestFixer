@@ -10,5 +10,5 @@ urlpatterns = [
     path('<int:pk>/', views.detail, name='detail'),
     path('<int:pk>/delete/', views.delete, name='delete'),
     path('<int:pk>/edit/', views.edit, name='edit'),
-
+    path('<int:pk>/new-comment/', views.new_comment, name='new_comment'),  # Add this line for new comments
 ]

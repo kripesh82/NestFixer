@@ -1,0 +1,74 @@
+{% extends 'core/base.html' %}
+
+{% block title %} Edit Profile {% endblock %}
+
+{% block content %}
+<div class="w-1/2 my-6 mx-auto p-6 bg-gray-100 rounded-xl">
+    <h1 class="mb-6 text-3xl"> Edit Profile</h1>
+    <h2 class="mb-6 text-2xl">Hi, {{ request.user.username }} you can change your username, email and password from here.</h2> 
+
+    <!-- Form for changing user info -->
+    <form method="post">
+        {% csrf_token %}
+    
+        <!-- User info fields -->
+        <div class="mb-3">
+            <label class="inline-block mb-2">Username</label> <br>
+            {{ user_form.username }}
+        </div>
+    
+        <div class="mb-3">
+            <label class="inline-block mb-2">Email</label> <br>
+            {{ user_form.email }}
+        </div>
+    
+        <button type="submit" name="change_user_info" class="py-4 px-8 text-lg bg-teal-500 hover:bg-teal-700 rounded-xl text-white">Save User Info</button>
+    </form>
+
+    <!-- Add a separator line -->
+    <hr class="my-6 border-t-2 border-gray-300">
+
+    <!-- Form for changing password -->
+    <form method="post">
+        {% csrf_token %}
+    
+        <!-- Password fields -->
+        <h2 class="mb-4 text-2xl">Change Password</h2> <!-- Add this heading -->
+        
+        <div class="mb-3">
+            <label class="inline-block mb-2">Enter Old Password</label> <br>
+            {{ password_form.old_password }}
+        </div>
+    
+        <div class="mb-3">
+            <label class="inline-block mb-2">New Password</label> <br>
+            {{ password_form.new_password1 }}
+        </div>
+    
+        <div class="mb-3">
+            <label class="inline-block mb-2">Confirm New Password</label> <br>
+            {{ password_form.new_password2 }}
+        </div>
+    
+        <button type="submit" name="change_password" class="py-4 px-8 text-lg bg-teal-500 hover:bg-teal-700 rounded-xl text-white">Save Password</button>
+    </form>
+
+    <!-- Add a separator line -->
+    <hr class="my-6 border-t-2 border-gray-300">
+
+    <!-- Form for deleting account -->
+    <form method="post" action="{% url 'core:delete_account' %}">
+        {% csrf_token %}
+        <button type="submit" name="delete_account" class="py-4 px-8 text-lg bg-red-500 hover:bg-red-700 rounded-xl text-white">Delete Account</button>
+    </form>
+    
+    {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+</div>
+
+{% endblock %}

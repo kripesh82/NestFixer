@@ -3,6 +3,7 @@ from django.db.models import Q
 from .models import Item, category
 from django.contrib.auth.decorators import login_required
 from .forms import NewItemForm, EditItemForm
+from django.db.models import Avg
 
 
 def items(request):
@@ -77,3 +78,100 @@ def edit(request,pk):
         'form': form,
         'title': 'Edit item'
     })
+
+
+
+
+# views.py
+from .forms import CommentForm, ReviewForm
+
+def detail(request, pk):
+    item = get_object_or_404(Item, pk=pk)
+    related_items = Item.objects.filter(Category=item.Category, is_available=True).exclude(pk=pk)[0:3]
+
+    comment_form = CommentForm()
+    review_form = ReviewForm()
+
+    if request.method == 'POST':
+        if 'comment_submit' in request.POST:
+            comment_form = CommentForm(request.POST)
+            if comment_form.is_valid():
+                comment = comment_form.save(commit=False)
+                comment.user = request.user
+                comment.item = item
+                comment.save()
+        elif 'review_submit' in request.POST:
+            review_form = ReviewForm(request.POST)
+            if review_form.is_valid():
+                review = review_form.save(commit=False)
+                review.user = request.user
+                review.item = item
+                review.save()
+
+    # Calculate average rating
+    avg_rating = item.reviews.aggregate(Avg('rating'))['rating__avg']
+
+    return render(request, 'item/detail.html', {
+        'item': item,
+        'related_items': related_items,
+        'comment_form': comment_form,
+        'review_form': review_form,
+        'avg_rating': avg_rating,
+    })
+
+
+# views.py
+from .forms import CommentForm, ReviewForm
+
+def detail(request, pk):
+    item = get_object_or_404(Item, pk=pk)
+    related_items = Item.objects.filter(Category=item.Category, is_available=True).exclude(pk=pk)[0:3]
+
+    comment_form = CommentForm()
+    review_form = ReviewForm()
+
+    if request.method == 'POST':
+        if 'comment_submit' in request.POST:
+            comment_form = CommentForm(request.POST)
+            if comment_form.is_valid():
+                comment = comment_form.save(commit=False)
+                comment.user = request.user
+                comment.item = item
+                comment.save()
+        elif 'review_submit' in request.POST:
+            review_form = ReviewForm(request.POST)
+            if review_form.is_valid():
+                review = review_form.save(commit=False)
+                review.user = request.user
+                review.item = item
+                review.save()
+
+    # Calculate average rating
+    avg_rating = item.reviews.aggregate(Avg('rating'))['rating__avg']
+
+    return render(request, 'item/detail.html', {
+        'item': item,
+        'related_items': related_items,
+        'comment_form': comment_form,
+        'review_form': review_form,
+        'avg_rating': avg_rating,
+    })
+
+
+
+# views.py
+from django.shortcuts import redirect
+
+@login_required
+def new_comment(request, pk):
+    item = get_object_or_404(Item, pk=pk)
+
+    if request.method == 'POST':
+        comment_form = CommentForm(request.POST)
+        if comment_form.is_valid():
+            comment = comment_form.save(commit=False)
+            comment.user = request.user
+            comment.item = item
+            comment.save()
+
+    return redirect('item:detail', pk=pk)

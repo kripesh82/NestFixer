@@ -1,6 +1,15 @@
 from django.shortcuts import redirect, render
 from item.models import category, Item
 from .forms import SignupForm
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.forms import PasswordChangeForm
+from django.contrib.auth import update_session_auth_hash
+from django.shortcuts import render, redirect
+from .forms import EditProfileForm
+from django.contrib import messages
+from .forms import EditProfileForm, CustomPasswordChangeForm
+from django.contrib.auth import logout
+
 
 # Create your views here.
 def index(request):
@@ -42,3 +51,49 @@ def signup(request):
         'form':form
     })
     
+@login_required
+def edit_profile(request):
+    if request.method == 'POST':
+        if 'change_user_info' in request.POST:
+            user_form = EditProfileForm(request.POST, instance=request.user)
+            if user_form.is_valid():
+                user_form.save()
+                messages.success(request, 'Your profile information was successfully updated.')
+                return redirect('core:index')
+            else:
+                messages.error(request, 'Please correct the errors below.')
+        elif 'change_password' in request.POST:
+            password_form = CustomPasswordChangeForm(user=request.user, data=request.POST)
+            if password_form.is_valid():
+                password_form.save()
+                update_session_auth_hash(request, password_form.user)
+                messages.success(request, 'Your password was successfully updated.')
+                return redirect('core:index')
+            else:
+                messages.error(request, 'Please correct the errors below.')
+    else:
+        user_form = EditProfileForm(instance=request.user)
+        password_form = CustomPasswordChangeForm(user=request.user)
+
+    return render(request, 'core/edit_profile.html', {
+        'user_form': user_form,
+        'password_form': password_form,
+    })
+
+
+
+@login_required
+def delete_account(request):
+    if request.method == 'POST':
+        request.user.delete()
+        logout(request)
+        messages.success(request, 'Your account has been successfully deleted.')
+        return redirect('core:index')
+
+    user_form = EditProfileForm(instance=request.user)
+    password_form = CustomPasswordChangeForm(user=request.user)
+
+    return render(request, 'core/edit_profile.html', {
+        'user_form': user_form,
+        'password_form': password_form,
+    })

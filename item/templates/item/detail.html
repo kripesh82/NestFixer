@@ -38,6 +38,10 @@
         <p class="text-gray-700"><strong>Negotiable: </strong>{{ item.is_negotiable|yesno:"Yes,No" }}</p>
         {% endif %}
 
+        {% if avg_rating %}
+        <p class="mt-4"><strong>Average Rating:</strong> {{ avg_rating|floatformat:1 }}/5</p>
+        {% endif %}
+
         {% if request.user == item.created_by %}
         <div class="mt-6 p-6 bg-white rounded-xl">
             <p class="text-red-500 font-semibold">This is your post!</p>
@@ -49,6 +53,53 @@
         {% else %}
         <a href="{% url 'conversation:new' item.id %}" class="inline-block mt-6 px-6 py-3 text-lg font-semibold bg-teal-500 text-white rounded-xl hover:bg-teal-700">Contact Person</a>
         {% endif %}
+
+<!-- Comments Section -->
+<div class="mt-6">
+    <h2 class="mb-4 text-2xl font-semibold">Comments</h2>
+    <div class="space-y-4">
+        {% for comment in item.comments.all %}
+            <div class="bg-gray-100 p-4 rounded-md">
+                <p class="text-gray-700"><strong>{{ comment.user.username }}:</strong> {{ comment.text }}</p>
+            </div>
+        {% endfor %}
+
+        <!-- Comment Form -->
+        {% if request.user.is_authenticated %}
+            <form method="post" action="{% url 'item:detail' item.id %}">
+                {% csrf_token %}
+                {{ comment_form.as_p }}
+                <button type="submit" name="comment_submit" class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-700">Add Comment</button>
+            </form>
+        {% else %}
+            <p>Login to add a comment.</p>
+        {% endif %}
+    </div>
+</div>
+
+<!-- Reviews Section -->
+<div class="mt-6">
+    <h2 class="mb-4 text-2xl font-semibold">Reviews</h2>
+    <div class="space-y-4">
+        {% for review in item.reviews.all %}
+            <div class="bg-gray-100 p-4 rounded-md">
+                <p class="text-gray-700"><strong>{{ review.user.username }}:</strong> Rating: {{ review.rating }}</p>
+            </div>
+        {% endfor %}
+
+        <!-- Review Form -->
+        {% if request.user.is_authenticated %}
+            <form method="post" action="{% url 'item:detail' item.id %}">
+                {% csrf_token %}
+                {{ review_form.as_p }}
+                <button type="submit" name="review_submit" class="bg-green-500 text-white px-4 py-2 rounded-md hover:bg-green-700">Add Review</button>
+            </form>
+        {% else %}
+            <p>Login to add a review.</p>
+        {% endif %}
+    </div>
+</div>
+
 
     </div>
 </div>

@@ -1,6 +1,39 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm , AuthenticationForm 
 from django.contrib.auth.models import User
+from django.contrib.auth.forms import UserChangeForm
+from django.contrib.auth.forms import PasswordChangeForm
+
+class CustomPasswordChangeForm(PasswordChangeForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        # Customize the widget attributes for password fields
+        self.fields['old_password'].widget.attrs['class'] = 'w-full py-4 px-6 rounded-xl'
+        self.fields['new_password1'].widget.attrs['class'] = 'w-full py-4 px-6 rounded-xl'
+        self.fields['new_password2'].widget.attrs['class'] = 'w-full py-4 px-6 rounded-xl'
+
+
+class EditProfileForm(UserChangeForm):
+    class Meta:
+        model = User
+        fields = ('username', 'email')
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        # Customize form fields if needed
+        self.fields['username'].widget.attrs['class'] = 'w-full py-4 px-6 rounded-xl'
+        self.fields['email'].widget.attrs['class'] = 'w-full py-4 px-6 rounded-xl'
+        
+        # Check for the correct field names for password change
+        if 'password' in self.fields:
+            self.fields['password'].widget.attrs['class'] = 'w-full py-4 px-6 rounded-xl'
+        if 'new_password1' in self.fields:
+            self.fields['new_password1'].widget.attrs['class'] = 'w-full py-4 px-6 rounded-xl'
+        if 'new_password2' in self.fields:
+            self.fields['new_password2'].widget.attrs['class'] = 'w-full py-4 px-6 rounded-xl'
+
+
+
 
 
 class LoginForm(AuthenticationForm):
