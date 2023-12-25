@@ -3,20 +3,79 @@
 {% block title %} {{ title }} {% endblock %}
 
 {% block content %}
-    <h1 class="mb-6 text-3xl">{{ title }}</h1>
-    <form method="post" action="." enctype="multipart/form-data">
-        {% csrf_token %}
-        <div class="space-y-4">
-            {{ form.as_p }}
-        </div>
-        {% if form.errors or form.non_field_errors %}
-            <div class="mb-3 p-6 bg-red-100 rounded-xl">
-                {% for field in form %}
-                    {{ field.errors }}
-                {% endfor %} 
-                {{ form.non_field_errors }}
+   
+    {% comment %} <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Add New Post</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head> {% endcomment %}
+<body >
+    <section class="bg-white">
+  <div class="py-8 px-4 mx-auto max-w-3xl lg:py-16">
+      <h2 class="mb-4 text-xl font-bold text-gray-900 dark:text-black">Add a new post</h2>
+      <h2 class="mb-4 text-l font-bold text-gray-900 dark:text-black">You can edit your details later..</h2>
+      <form action="#">
+          <div class="grid gap-4 sm:grid-cols-2 sm:gap-6">
+            <div>
+                <label for="category" class="block mb-2 text-sm font-medium text-gray-900 dark:text-black">Category:</label>
+                <select id="category" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-400 dark:border-gray-600 dark:placeholder-black dark:text-black dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                    <option selected="">Select Category</option>
+                    <option value="Plumber">Plumber</option>
+                    <option value="Janitor">Janitor</option>
+                    <option value="Cook">Cook</option>
+                    <option value="Electrician">Electrician</option>
+                </select>
             </div>
-        {% endif %}
-        <button class="mt-6 py-4 px-8 text-lg bg-teal-500 hover:bg-teal-700 rounded-xl text-white" type="submit">Submit</button>
-    </form>
+            <div class="w-full">
+                <label for="description" class="block mb-2 text-sm font-medium text-gray-900 dark:text-black">Description:</label>
+                <textarea id="description" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-400 dark:border-gray-600 dark:placeholder-black dark:text-black dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Your description here"></textarea>
+            </div>
+            
+              <div class="w-full">
+                  <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-black"> Name:</label>
+                  <input type="text" name="name" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-400 dark:border-gray-600 dark:placeholder-black dark:text-black dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Enter your name" required="">
+              </div>
+             
+              
+              
+              <div class="w-full">
+                  <label for="price" class="block mb-2 text-sm font-medium text-gray-900 dark:text-black">Price:</label>
+                  <input type="number" name="price" id="price" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-400 dark:border-gray-600 dark:placeholder-black dark:text-black dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="per hour" required="">
+              </div>
+              <div class="w-full">
+                <label for="location" class="block mb-2 text-sm font-medium text-gray-900 dark:text-black">Location:</label>
+                <input type="text" name="brand" id="brand" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-400 dark:border-gray-600 dark:placeholder-black dark:text-black dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Your location" required="">
+            </div>
+              
+              <div>
+                  <label for="item-weight" class="block mb-2 text-sm font-medium text-gray-900 dark:text-black">Phone Number:</label>
+                  <input type="text" name="item-weight" id="item-weight" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-400 dark:border-gray-600 dark:placeholder-black dark:text-black dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Phone Number" required="">
+              </div> 
+
+              <div>
+            <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-black" for="file_input">Upload image:</label>
+            <input class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" id="file_input" type="file">
+               </div>
+            <div>
+                <label for="item-weight" class="block mb-2 text-sm font-medium text-gray-900 dark:text-black">Mail</label>
+                <input type="text" name="item-weight" id="item-weight" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-400 dark:border-gray-600 dark:placeholder-black dark:text-black dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Email" required="">
+            </div> 
+                
+            <label for="des" class=" block mb-2 text-m font-medium text-gray-900 dark:black">⚠️ Please fill all the boxes with valid credentials</label>
+            <br><br>
+              
+          </div>
+          <button type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2 dark:bg-blue-950 dark:hover:bg-blue-700 dark:focus:ring-blue-800"> + Add Post</button><br> <br>
+
+      </form>
+  </div>
+</section>
+
+    
+</body>
+</html> 
 {% endblock %}
