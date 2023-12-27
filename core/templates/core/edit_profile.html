@@ -3,72 +3,86 @@
 {% block title %} Edit Profile {% endblock %}
 
 {% block content %}
-<div class="w-1/2 my-6 mx-auto p-6 bg-gray-100 rounded-xl">
-    <h1 class="mb-6 text-3xl"> Edit Profile</h1>
-    <h2 class="mb-6 text-2xl">Hi, {{ request.user.username }} you can change your username, email and password from here.</h2> 
-
-    <!-- Form for changing user info -->
-    <form method="post">
-        {% csrf_token %}
-    
-        <!-- User info fields -->
-        <div class="mb-3">
-            <label class="inline-block mb-2">Username</label> <br>
-            {{ user_form.username }}
-        </div>
-    
-        <div class="mb-3">
-            <label class="inline-block mb-2">Email</label> <br>
-            {{ user_form.email }}
-        </div>
-    
-        <button type="submit" name="change_user_info" class="py-4 px-8 text-lg bg-teal-500 hover:bg-teal-700 rounded-xl text-white">Save User Info</button>
-    </form>
-
-    <!-- Add a separator line -->
-    <hr class="my-6 border-t-2 border-gray-300">
-
-    <!-- Form for changing password -->
-    <form method="post">
-        {% csrf_token %}
-    
-        <!-- Password fields -->
-        <h2 class="mb-4 text-2xl">Change Password</h2> <!-- Add this heading -->
-        
-        <div class="mb-3">
-            <label class="inline-block mb-2">Enter Old Password</label> <br>
-            {{ password_form.old_password }}
-        </div>
-    
-        <div class="mb-3">
-            <label class="inline-block mb-2">New Password</label> <br>
-            {{ password_form.new_password1 }}
-        </div>
-    
-        <div class="mb-3">
-            <label class="inline-block mb-2">Confirm New Password</label> <br>
-            {{ password_form.new_password2 }}
-        </div>
-    
-        <button type="submit" name="change_password" class="py-4 px-8 text-lg bg-teal-500 hover:bg-teal-700 rounded-xl text-white">Save Password</button>
-    </form>
-
-    <!-- Add a separator line -->
-    <hr class="my-6 border-t-2 border-gray-300">
-
-    <!-- Form for deleting account -->
-    <form method="post" action="{% url 'core:delete_account' %}">
-        {% csrf_token %}
-        <button type="submit" name="delete_account" class="py-4 px-8 text-lg bg-red-500 hover:bg-red-700 rounded-xl text-white">Delete Account</button>
-    </form>
-    
-    {% if messages %}
-        <ul class="messages">
-            {% for message in messages %}
+<section class="bg-white dark:bg-white">
+    <div class="py-8 px-4 mx-auto max-w-3xl lg:py-16">
+        <div class="bg-gray-100 p-6 rounded-xl">
+            <h2 class="mb-4 text-xl font-bold text-gray-900 dark:text-black">Edit Profile</h2>
+            <h2 class="mb-4 text-l font-bold text-gray-900 dark:text-black">You can edit your profile here!</h2>
+            
+            <!-- Form for changing user info -->
+            <form method="post" class="mb-6">
+                {% csrf_token %}
+                <div class="grid grid-cols-1 gap-4">
+                    <div>
+                        <label for="id_username" class="block mb-2 text-sm font-medium text-gray-900 dark:text-black">Username:</label>
+                        {{ user_form.username }}
+                    </div>
+                    
+                    <div>
+                        <label for="id_email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-black">Email:</label>
+                        {{ user_form.email }}
+                    </div>
+                </div>
+                <button type="submit" name="change_user_info"
+                        class="flex items-center justify-center text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-64 ml-8 mt-4 py-4 mb-2 w-full md:w-auto dark:bg-blue-950 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                    Save Changes
+                </button>
+                
+                
+                
+            </form>
+            
+            <hr class="my-6 border-t-2 border-gray-300"> <!-- Line between sections -->
+            
+            <!-- Form for changing password -->
+            <form method="post">
+                {% csrf_token %}
+                <h2 class="mb-4 text-xl font-bold text-gray-900 dark:text-black">Change Password</h2>
+                <div class="grid grid-cols-1 gap-4">
+                    <div>
+                        <label for="id_old_password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-black">Enter Old Password:</label>
+                        {{ password_form.old_password }}
+                    </div>
+                    
+                    <div>
+                        <label for="id_new_password1" class="block mb-2 text-sm font-medium text-gray-900 dark:text-black">New Password:</label>
+                        {{ password_form.new_password1 }}
+                    </div>
+                    
+                    <div>
+                        <label for="id_new_password2" class="block mb-2 text-sm font-medium text-gray-900 dark:text-black">Confirm New Password:</label>
+                        {{ password_form.new_password2 }}
+                    </div>
+                    
+                    <label for="des" class="block mb-2 text-m font-medium text-gray-900 dark:text-black">⚠️ Password and retyped password must be the same</label>
+                </div>
+                
+                <button type="submit" name="change_password" class="text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-64 ml-8 mt-4 py-4 text-center me-2 mb-2 dark:bg-blue-950 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                    Change Password
+                </button>
+            </form>
+            
+            <hr class="my-6 border-t-2 border-gray-300"> <!-- Line between sections -->
+            
+            <!-- Form for deleting account -->
+            <form method="post" action="{% url 'core:delete_account' %}" class="mb-6">
+                {% csrf_token %}
+                <button type="submit" name="delete_account" class="text-white bg-red-700 hover:bg-red-800 focus:outline-none focus:ring-4 focus:ring-red-300 font-medium rounded-full text-sm px-64 ml-10 mt-4 py-4 mb-4 text-center me-2 mb-2 dark:bg-red-950 dark:hover:bg-red-700 dark:focus:ring-blue-800">
+                    Delete Account
+                </button>
+                
+                <label for="des" class="block mb-2 text-m font-medium text-gray-900 dark:text-black">⚠️ Your account will be deleted permanently</label>
+            </form>
+            
+            {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
                 <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-            {% endfor %}
-        </ul>
-    {% endif %}
-</div>
-
+                {% endfor %}
+            </ul>
+            {% endif %}
+            
+        </div>
+    </div>
+</section>
 {% endblock %}
