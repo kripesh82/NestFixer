@@ -3,126 +3,138 @@
 {% block title %}{{ item.name }}{% endblock %}
 
 {% block content %}
-<div class="grid grid-cols-5 gap-6">
-    <div class="col-span-3">
-        <img src="{{ item.image.url }}" class="rounded-xl w-full h-auto">
-    </div>
-
-    <div class="col-span-2 p-6 bg-gray-100 rounded-xl">
-        <h1 class="mb-6 text-3xl font-semibold">{{item.name}}</h1>
-        <p class="text-gray-700"><strong>Rate: </strong>Rs {{item.price}} per day</p>
-        <p class="text-gray-700"><strong>Posted By: </strong>{{item.created_by}}</p>
-        <p class="text-gray-700"><strong>Location: </strong>{{item.location}}</p>
-
-        {% if item.phone_number %}
-        <p class="text-gray-700">
-            <strong>Phone Number: </strong>
-            <a href="tel:{{ item.phone_number }}" class="text-blue-500 hover:underline">{{ item.phone_number }}</a>
-        </p>
-        {% endif %}
-        
-        {% if item.email %}
-        <p class="text-gray-700">
-            <strong>Email: </strong>
-            <a href="mailto:{{ item.email }}" class="text-blue-500 hover:underline">{{ item.email }}</a>
-        </p>
-        {% endif %}
-
-        {% if item.description %}
-        <p class="text-gray-700">
-            <strong>Description: </strong>{{item.description}} 
-        </p>
-        {% endif %}
-
-        {% if item.is_negotiable %}
-        <p class="text-gray-700"><strong>Negotiable: </strong>{{ item.is_negotiable|yesno:"Yes,No" }}</p>
-        {% endif %}
-
-        {% if avg_rating %}
-        <p class="mt-4"><strong>Average Rating:</strong> {{ avg_rating|floatformat:1 }}/5</p>
-        {% endif %}
-
-        {% if request.user == item.created_by %}
-        <div class="mt-6 p-6 bg-white rounded-xl">
-            <p class="text-red-500 font-semibold">This is your post!</p>
-            <div class="flex gap-4">
-                <a href="{% url 'item:delete' item.id %}" class="inline-block px-6 py-3 text-lg font-semibold bg-red-500 text-white rounded-xl hover:bg-red-700">Delete Post</a>
-                <a href="{% url 'item:edit' item.id %}" class="inline-block px-6 py-3 text-lg font-semibold bg-green-500 text-white rounded-xl hover:bg-green-700">Edit Post</a>
-            </div>
-        </div>
-        {% else %}
-        <a href="{% url 'conversation:new' item.id %}" class="inline-block mt-6 px-6 py-3 text-lg font-semibold bg-teal-500 text-white rounded-xl hover:bg-teal-700">Contact Person</a>
-        {% endif %}
-
-<!-- Comments Section -->
-<div class="mt-6">
-    <h2 class="mb-4 text-2xl font-semibold">Comments</h2>
-    <div class="space-y-4">
-        {% for comment in item.comments.all %}
-            <div class="bg-gray-100 p-4 rounded-md">
-                <p class="text-gray-700"><strong>{{ comment.user.username }}:</strong> {{ comment.text }}</p>
-            </div>
-        {% endfor %}
-
-        <!-- Comment Form -->
-        {% if request.user.is_authenticated %}
-            <form method="post" action="{% url 'item:detail' item.id %}">
-                {% csrf_token %}
-                {{ comment_form.as_p }}
-                <button type="submit" name="comment_submit" class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-700">Add Comment</button>
-            </form>
-        {% else %}
-            <p>Login to add a comment.</p>
-        {% endif %}
-    </div>
-</div>
-
-<!-- Reviews Section -->
-<div class="mt-6">
-    <h2 class="mb-4 text-2xl font-semibold">Reviews</h2>
-    <div class="space-y-4">
-        {% for review in item.reviews.all %}
-            <div class="bg-gray-100 p-4 rounded-md">
-                <p class="text-gray-700"><strong>{{ review.user.username }}:</strong> Rating: {{ review.rating }}</p>
-            </div>
-        {% endfor %}
-
-        <!-- Review Form -->
-        {% if request.user.is_authenticated %}
-            <form method="post" action="{% url 'item:detail' item.id %}">
-                {% csrf_token %}
-                {{ review_form.as_p }}
-                <button type="submit" name="review_submit" class="bg-green-500 text-white px-4 py-2 rounded-md hover:bg-green-700">Add Review</button>
-            </form>
-        {% else %}
-            <p>Login to add a review.</p>
-        {% endif %}
-    </div>
-</div>
-
-
-    </div>
-</div>
-
-<div class="mt-6 px-6 py-12 bg-gray-100 rounded-xl">
-    <h2 class="mb-12 text-2xl text-center font-semibold">Related Services</h2>
-
-    <div class="grid grid-cols-3 gap-6">
-        {% for related_item in related_items %}
-        <div class="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-lg">
-            <a href="{% url 'item:detail' related_item.id %}">
+<div class="max-w-6xl mx-auto  p-2 bg-sky-50 rounded-lg shadow-lg">
+    <div class="flex flex-col md:flex-row space-y-8 md:space-y-0 md:space-x-8">
+        <!-- Profile Information -->
+        <div class="md:w-1/2">
+            <div class="flex items-center mb-4 space-x-4">
+                <img src="{{ item.image.url }}" class="max-w-xs rounded overflow-hidden shadow-lg">
                 <div>
-                    <img src="{{ related_item.image.url }}" class="rounded-t-xl w-full h-48 object-cover">
+                    <h1 class="text-3xl font-semibold">{{ item.name }}</h1>
+                    <p class="text-gray-700"><strong>Rate:</strong> Rs {{ item.price }} per day</p>
+                    <p class="text-gray-700"><strong>Posted By:</strong> {{ item.created_by }}</p>
+                    <p class="text-gray-700"><strong>Location:</strong> {{ item.location }}</p>
+                    <!-- Add other details as needed -->
                 </div>
-                <div class="p-6">
-                    <h2 class="text-xl font-semibold">{{ related_item.name }}</h2>
-                    <p class="text-gray-500">{{ related_item.Category }}</p>
-                    <p class="text-gray-700">Price: Rs {{ related_item.price }} per day</p>
+            </div>
+
+            <p class="text-gray-700"><strong>Description:</strong> {{ item.description }}</p>
+
+            {% if item.phone_number %}
+                <p class="text-gray-700">
+                    <strong>Phone Number:</strong>
+                    <a href="tel:{{ item.phone_number }}" class="text-blue-500 hover:underline">{{ item.phone_number }}</a>
+                </p>
+            {% endif %}
+
+            {% if item.email %}
+                <p class="text-gray-700">
+                    <strong>Email:</strong>
+                    <a href="mailto:{{ item.email }}" class="text-blue-500 hover:underline">{{ item.email }}</a>
+                </p>
+            {% endif %}
+
+            {% if item.is_negotiable %}
+                <p class="text-gray-700"><strong>Negotiable:</strong> {{ item.is_negotiable|yesno:"Yes,No" }}</p>
+            {% endif %}
+
+            {% if avg_rating %}
+                <p class="mt-2"><strong>Average Rating:</strong> {{ avg_rating|floatformat:1 }}/5</p>
+            {% endif %}
+
+            {% if request.user == item.created_by %}
+                <div class="mt-1 p-2 bg-sky-50 rounded-md">
+                    <p class="text-red-500 font-semibold">This is your post!</p>
+                    <div class="flex gap-4">
+                        <a href="{% url 'item:delete' item.id %}" class="btn-danger py-2 px-1 bg-sky-950 text-yellow-400 text-xl font-semibold px-4 py-2 rounded-full hover:bg-blue-700">Delete</a>
+                        <a href="{% url 'item:edit' item.id %}" class="btn-success py-2 px-1 bg-sky-950 text-yellow-400 text-xl font-semibold px-4 py-2 rounded-full hover:bg-blue-700">Edit</a>
+                    </div>
                 </div>
-            </a>
+            {% else %}
+                <a href="{% url 'conversation:new' item.id %}"
+                   class="mt-8 inline-block px-4 py-2 text-sm font-semibold bg-teal-500 text-white rounded-full hover:bg-teal-700">
+                    Contact Person
+                </a>
+            {% endif %}
         </div>
-        {% endfor %}
+
+        <!-- Comments and Reviews Section -->
+        <div class="md:w-1/2 space-y-8">
+            <!-- Comments Section -->
+            <div class="mb-8">
+                <h2 class="mb-4 text-2xl font-semibold">Comments</h2>
+                <div class="space-y-4">
+                    {% for comment in item.comments.all %}
+                        <div class="bg-gray-100 p-4 rounded-md">
+                            <p class="text-gray-700"><strong>{{ comment.user.username }}:</strong> {{ comment.text }}</p>
+                        </div>
+                    {% endfor %}
+
+                    <!-- Comment Form -->
+                    {% if request.user.is_authenticated %}
+                        <form method="post" action="{% url 'item:detail' item.id %}">
+                            {% csrf_token %}
+                            {{ comment_form.as_p }}
+                            <button type="submit" name="comment_submit"
+                                    class="bg-sky-950 text-yellow-400 text-xl font-semibold px-4 py-2 rounded-full hover:bg-blue-700">Comment
+                            </button>
+                        </form>
+                    {% else %}
+                        <p>Login to add a comment.</p>
+                    {% endif %}
+                </div>
+            </div>
+
+            <!-- Reviews Section -->
+            <div>
+                <h2 class="mb-4 text-2xl font-semibold">Reviews</h2>
+                <div class="space-y-4">
+                    {% for review in item.reviews.all %}
+                        <div class="bg-gray-100 p-4 rounded-md">
+                            <p class="text-gray-700">
+                                <strong>{{ review.user.username }}:</strong> Rating: {{ review.rating }}
+                            </p>
+                        </div>
+                    {% endfor %}
+
+                    <!-- Review Form -->
+                    {% if request.user.is_authenticated %}
+                        <form method="post" action="{% url 'item:detail' item.id %}">
+                            {% csrf_token %}
+                            {{ review_form.as_p }}
+                            <button type="submit" name="review_submit"
+                                    class="bg-sky-950 text-yellow-400 text-xl font-semibold px-4 py-2 rounded-full hover:bg-blue-700">Review
+                            </button>
+                        </form>
+                    {% else %}
+                        <p>Login to add a review.</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Related Services -->
+    <h2 class="mt-12 text-4xl text-center text-yellow-500 font-semibold ">Related Professionals</h2>
+    <div class="mt-12 bg-gray-200 rounded-lg">
+        <!--h2 class="mb-4 text-2xl text-center font-semibold mt-2">Related Services</h2-->
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+            {% for related_item in related_items %}
+                <div class="bg-white ml-2 mt-2 mb-2 rounded-xl overflow-hidden shadow-md hover:shadow-lg">
+                    <a href="{% url 'item:detail' related_item.id %}">
+                        <div>
+                            <img src="{{ related_item.image.url }}" class="rounded-t-xl w-full h-48 object-cover">
+                        </div>
+                        <div class="p-6">
+                            <h2 class="text-xl font-semibold">{{ related_item.name }}</h2>
+                            <p class="text-gray-500">{{ related_item.Category }}</p>
+                            <p class="text-gray-700">Price: Rs {{ related_item.price }} per day</p>
+                        </div>
+                    </a>
+                </div>
+            {% endfor %}
+        </div>
     </div>
 </div>
-
 {% endblock %}
