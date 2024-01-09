@@ -13,11 +13,10 @@ from django.contrib.auth import logout
 
 # Create your views here.
 def index(request):
-    items=Item.objects.filter(is_available=True)[0:6]
-    categories= category.objects.all()
+    items = Item.objects.filter(is_available=True).order_by('-id')[:4]  # Assuming 'is_available' filters availability
+    categories = category.objects.all()  # Retrieve all categories
 
-
-    return render(request, 'core/index.html',{
+    return render(request, 'core/index.html', {
         'categories': categories,
         'items': items,
     })

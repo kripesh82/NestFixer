@@ -5,6 +5,8 @@ from item.models import Item
 from .forms import ConversationMessageForm
 from .models import Conversation
 from django.contrib.auth.decorators import login_required
+from django.db.models import Max
+
 
 
 
@@ -76,4 +78,14 @@ def detail(request,pk):
     return render(request,'conversation/detail.html',{
         'conversation':conversation,
         'form':form
+    })
+
+@login_required
+def inbox(request):
+    conversations = Conversation.objects.filter(members=request.user).annotate(
+        latest_message_time=Max('messages__created_at')
+    ).order_by('-latest_message_time')
+
+    return render(request, 'conversation/inbox.html', {
+        'conversations': conversations
     })

@@ -1,26 +1,28 @@
 {% extends "core/base.html" %}
-{%block title%}Conversation {% endblock %}
+{% block title %}Conversation{% endblock %}
 
-{%block content%}
-
-<h1 class="mb-6 text-3xl">Conversation </h1> 
-<div class="space-y-6">
-    {%for message in conversation.messages.all%} 
-            
-    <div class="p-6 flex{%if message.created_by == request.user%}bg-blue-100{%else%}bg-gray-100{%endif%} rounded-xl">
-        <div>
-            <p class ="mb-4"><strong>{{message.created_by.username}}</strong> @{{message.created_at}} </p>
-            <p> {{message.content}}</p>
+{% block content %}
+    <div class="border border-gray-300 rounded-lg p-4 bg-gray-100">
+        <h1 class="mb-6 text-3xl">Conversation History</h1>
+        <hr color="bg-black"><hr><hr><hr><hr><br>
+        <div class="space-y-6">
+            {% for message in conversation.messages.all %}
+                <div class="{% if message.created_by == request.user %}flex justify-end{% else %}flex{% endif %}">
+                    <div class="p-4 max-w-xs rounded-lg {% if message.created_by == request.user %}bg-blue-600 text-white self-end{% else %}bg-gray-200 self-start{% endif %} border border-gray-300">
+                        <p class="mb-2 text-sm">
+                            <strong>{{ message.created_by.username }}</strong> @{{ message.created_at }}
+                        </p>
+                        <p class="text-sm">{{ message.content }}</p>
+                    </div>
+                </div>
+            {% endfor %}
         </div>
-
-            
+        <form method="post" action="." class="mt-6">
+            {% csrf_token %}
+            <div class="flex items-center border border-gray-300 rounded-lg">
+                <textarea name="content" class="w-full rounded-lg border-none p-2 mr-2" placeholder="Type your message"></textarea>
+                <button type="submit" class="py-4 px-14 text-sm bg-teal-500 hover:bg-teal-700 rounded-lg text-white">Send</button>
+            </div>
+        </form>
     </div>
-    {% endfor %}
-</div>
-<form method ="post" action="." class="mt-6">
-    {%csrf_token%}
-
-    {{form.as_p}}
-    <button class="py-4 px-8 text-lg bg-teal-500 hover:bg-teal-700 rounded-xl text-white">Send</button>
-</form>
-{%endblock%} 
+{% endblock %}
