@@ -54,15 +54,14 @@ data-te-ride="carousel"
     style="backface-visibility: hidden"
   >
     <img
-      src="media\static\images\slider1.jpg"
+      src="media\static\images\fixedwidth mathi ko.png"
       class="block w-full"
       alt="..."
     />
     <div
       class="absolute inset-x-[15%] bottom-5 hidden py-5 text-center text-white md:block"
     >
-      <h5 class="text-xl">First slide label</h5>
-      <p>Some representative placeholder content for the first slide.</p>
+      
     </div>
   </div>
 
@@ -73,15 +72,14 @@ data-te-ride="carousel"
     style="backface-visibility: hidden"
   >
     <img
-      src="media\static\images\slider2.jpg"
+      src="media\static\images\fixed width three.png"
       class="block w-full"
       alt="..."
     />
     <div
       class="absolute inset-x-[15%] bottom-5 hidden py-5 text-center text-white md:block"
     >
-      <h5 class="text-xl">Second slide label</h5>
-      <p>Some representative placeholder content for the second slide.</p>
+      
     </div>
   </div>
   <!--Third item-->
@@ -91,15 +89,14 @@ data-te-ride="carousel"
     style="backface-visibility: hidden"
   >
     <img
-      src="media\static\images\slider3.jpg"
+      src="media\static\images\fixed width.png"
       class="block w-full"
       alt="..."
     />
     <div
       class="absolute inset-x-[15%] bottom-5 hidden py-5 text-center text-white md:block"
     >
-      <h5 class="text-xl">Third slide label</h5>
-      <p>Some representative placeholder content for the third slide.</p>
+     
     </div>
   </div>
 </div>
@@ -199,12 +196,8 @@ initTE({ Carousel });
     {% for item in items %}
     <a href="{% url 'item:detail' item.id %}">
       <div class="mx-auto mt-6 w-full md:w-80 transform overflow-hidden rounded-lg bg-gray-100 dark:bg-white shadow-md duration-300 hover:scale-105 hover:shadow-lg">
-        {% if item.image and item.image.url %}
-    <img class="h-48 w-full object-cover object-center rounded-t-lg" src="{{ item.image.url }}" alt="{{ item.name }} Image" />
-{% else %}
-    <p>No image available</p>
-{% endif %}
-<div class="p-4">
+        <img class="h-48 w-full object-cover object-center rounded-t-lg" src="{{ item.image.url }}" alt="{{ item.name }} Image" />
+        <div class="p-4">
           <h2 class="mb-2 text-lg font-medium text-black dark:text-gray-900">{{ item.name }}</h2>
           <p class="mb-2 text-base text-black dark:text-gray-700">{{ item.description }}</p>
           <div class="flex items-center">
@@ -236,7 +229,7 @@ initTE({ Carousel });
         <!-- Section: Design Block -->
         <section class="mb-32">
           <h2 class="mb-6 pl-6 text-3xl font-bold">
-            hello darkness my old friend
+            Frequently Asked Questions
             </h2>
 
           <div id="accordionFlushExample">
@@ -252,7 +245,7 @@ initTE({ Carousel });
                   aria-expanded="false"
                   aria-controls="flush-collapseOne"
                 >
-                  Anim pariatur cliche reprehenderit?
+                What services do you offer at my doorstep?
                   <span
                     class="ml-auto h-5 w-5 shrink-0 rotate-[-180deg] fill-[#336dec] transition-transform duration-200 ease-in-out group-[[data-te-collapse-collapsed]]:rotate-0 group-[[data-te-collapse-collapsed]]:fill-[#212529] motion-reduce:transition-none dark:fill-[#8FAEE0] dark:group-[[data-te-collapse-collapsed]]:fill-[#eee]"
                   >
@@ -277,8 +270,7 @@ initTE({ Carousel });
                 data-te-parent="#accordionFlushExample"
               >
                 <div class="py-4 px-5 text-neutral-500 dark:text-neutral-300">
-                  Anim pariatur cliche reprehenderit, enim eiusmod high life
-                  accusamus terry richardson ad squid. 3 wolf moon officia
+                  Our platform connects users with a variety of services, including plumbing, electrical work, and more. If you're a service provider, you can showcase your skills to potential clients.
 
                 </div>
               </div>
@@ -296,7 +288,7 @@ initTE({ Carousel });
                   aria-expanded="false"
                   aria-controls="flush-collapseTwo"
                 >
-                  Non cupidatat skateboard dolor brunch?
+                How can I schedule a service to be delivered to my home or offer my services?
                   <span
                     class="ml-auto h-5 w-5 shrink-0 rotate-[-180deg] fill-[#336dec] transition-transform duration-200 ease-in-out group-[[data-te-collapse-collapsed]]:rotate-0 group-[[data-te-collapse-collapsed]]:fill-[#212529] motion-reduce:transition-none dark:fill-[#8FAEE0] dark:group-[[data-te-collapse-collapsed]]:fill-[#eee]"
                   >
@@ -320,8 +312,7 @@ initTE({ Carousel });
                 data-te-parent="#accordionFlushExample"
               >
                 <div class="py-4 px-5 text-neutral-500 dark:text-neutral-300">
-                  Anim pariatur cliche reprehenderit, enim eiusmod high life
-                  accusamus terry richardson ad squid. 3 wolf moon officia
+                  Users can easily request services by browsing through available providers, selecting a service, and scheduling a convenient time. If you're a service provider, sign up on our platform, create a profile, and start offering your services.
 
                 </div>
               </div>
@@ -339,8 +330,8 @@ initTE({ Carousel });
                   aria-expanded="false"
                   aria-controls="flush-collapseThree"
                 >
-                  Praesentium voluptatibus temporibus consequatur non
-                  aspernatur?
+                Can users customize the services they need, and can service providers showcase their specific skills?
+
                   <span
                     class="ml-auto h-5 w-5 shrink-0 rotate-[-180deg] fill-[#336dec] transition-transform duration-200 ease-in-out group-[[data-te-collapse-collapsed]]:rotate-0 group-[[data-te-collapse-collapsed]]:fill-[#212529] motion-reduce:transition-none dark:fill-[#8FAEE0] dark:group-[[data-te-collapse-collapsed]]:fill-[#eee]"
                   >
@@ -364,9 +355,7 @@ initTE({ Carousel });
                 data-te-parent="#accordionFlushExample"
               >
                 <div class="py-4 px-5 text-neutral-500 dark:text-neutral-300">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Velit optio vitae inventore autem fugiat rerum sed laborum.
-                  Natus recusandae laboriosam quos pariatur corrupti id
+                  Absolutely! Users can customize their service requests based on their needs, and service providers can showcase their expertise, experience, and the range of services they offer on their profiles.
 
                 </div>
               </div>
@@ -438,7 +427,7 @@ initTE({ Carousel });
           </div>
           <div class="mb-12 lg:mb-0">
             <img
-              src="https://mdbcdn.b-cdn.net/img/new/ecommerce/horizontal/058.jpg"
+              src="media\static\images\mathiko2.png"
               class="w-full rounded-lg shadow-lg"
               alt=""
             />
@@ -479,17 +468,14 @@ initTE({ Carousel });
               />
               <div class="flex flex-wrap justify-center">
                 <div class="w-full shrink-0 grow-0 basis-auto px-3 lg:w-8/12">
-                  <h5 class="mb-2 text-lg font-bold">Maria Kate</h5>
+                  <h5 class="mb-2 text-lg font-bold">Maria Khatri</h5>
                   <p
                     class="mb-4 font-medium text-neutral-700 dark:text-neutral-400"
                   >
                     Photographer
                   </p>
                   <p class="mb-6 text-neutral-500 dark:text-neutral-300">
-                    In ac turpis justo. Vivamus auctor quam vitae odio feugiat
-                    pulvinar. Sed semper ligula sed lorem tincidunt dignissim. Nam
-                    sed cursus lectus. Proin non rutrum magna. Proin gravida,
-                    justo et imperdiet tristique turpis nisi viverra.
+                    "I needed a plumber urgently, and this platform came to my rescue. Within hours, I had a skilled plumber fixing the issue. Super convenient and saved me from a plumbing disaster!"
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       viewBox="0 96 960 960"
@@ -578,17 +564,14 @@ initTE({ Carousel });
               />
               <div class="flex flex-wrap justify-center">
                 <div class="w-full shrink-0 grow-0 basis-auto px-3 lg:w-8/12">
-                  <h5 class="mb-2 text-lg font-bold">John Doe</h5>
+                  <h5 class="mb-2 text-lg font-bold">John Das</h5>
                   <p
                     class="mb-4 font-medium text-neutral-700 dark:text-neutral-400"
                   >
-                    Web Developer
+                    Farmer
                   </p>
                   <p class="mb-6 text-neutral-500 dark:text-neutral-300">
-                    Maecenas auctor, quam eget tincidunt pretium, felis diam
-                    semper turpis, sed scelerisque diam libero facilisis libero.
-                    Quisque vitae semper metus. Aliquam eu dui aliquam, faucibus
-                    metus quis, elementum nunc.
+                    "As someone not very tech-savvy, having tech support come to my home was a game-changer. They solved my computer issues, explained things clearly, and left me feeling confident about my technology. Highly recommended!"
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       viewBox="0 96 960 960"
@@ -677,17 +660,14 @@ initTE({ Carousel });
               />
               <div class="flex flex-wrap justify-center">
                 <div class="w-full shrink-0 grow-0 basis-auto px-3 lg:w-8/12">
-                  <h5 class="mb-2 text-lg font-bold">Anna Deynah</h5>
+                  <h5 class="mb-2 text-lg font-bold">Anna Dewan</h5>
                   <p
                     class="mb-4 font-medium text-neutral-700 dark:text-neutral-400"
                   >
                     UX Designer
                   </p>
                   <p class="mb-6 text-neutral-500 dark:text-neutral-300">
-                    Duis sagittis, turpis in ullamcorper venenatis, ligula nibh
-                    porta dui, sit amet rutrum enim massa in ante. Curabitur in
-                    justo at lorem laoreet ultricies. Nunc ligula felis, sagittis
-                    eget nisi vitae ex arcu sit amet erat.
+                    "I booked a mobile pet groomer through this platform, and my fur babies have never looked better! The groomer was professional, caring, and the fact that they come to my home made the entire experience stress-free for both me and my pets."
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       viewBox="0 96 960 960"
@@ -828,16 +808,17 @@ initTE({ Carousel });
       class="block rounded-lg bg-white shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] dark:bg-neutral-700">
       <div class="flex flex-wrap items-center bg-white">
         <div class="block w-full shrink-0 grow-0 basis-auto lg:flex lg:w-6/12 xl:w-4/12">
-          <img src="https://tecdn.b-cdn.net/img/new/ecommerce/vertical/004.jpg"
+          <img src="media\static\images\bichtirakonestfixer.png"
             class="w-full rounded-t-lg lg:rounded-tr-none lg:rounded-bl-lg" />
         </div>
         <div class="w-full shrink-0 grow-0 basis-auto lg:w-6/12 xl:w-8/12 bg-white">
           <div class="px-6 py-12 md:px-12">
             <h2 class="mb-6 pb-2 text-4xl font-bold">NESTFIXER</h2>
             <p class="mb-6 pb-2 text-neutral-500 dark:text-neutral-300">
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. A
-              soluta corporis voluptate ab error quam dolores doloremque,
-              quae consectetur.
+              Bringing unparalleled convenience right to your doorstep – our platform is your gateway to a world of 
+              services designed to elevate your lifestyle. Discover the ease of accessing a myriad of expert services
+               without stepping outside. From skilled professionals to essential deliveries, we are dedicated to making
+                your life simpler, one doorstep service at a time
             </p>
             <div class="mb-6 flex flex-wrap">
               <div class="mb-6 w-full md:w-4/12 lg:w-6/12 xl:w-4/12">
@@ -909,19 +890,19 @@ initTE({ Carousel });
   <section class="mb-32 text-center">
     <div class="flex justify-center">
       <div class="max-w-[700px] text-center">
-        <h2 class="mb-6 text-center text-3xl font-bold">
-          Why is it so<u class="text-primary dark:text-primary-400">
+        <h2 class="mb-6 text-center text-3xl text-yellow-500 font-bold">
+          Why is it so<u class="text-sky-950 ">
             great?</u>
         </h2>
         <p class="mb-16 text-neutral-500 dark:text-neutral-300">
-          Minus fuga aliquid vero facere ducimus quos, quisquam nemo?
-          Molestias ullam provident vitae error aliquam dolorum temporibus?
-          Doloremque, quasi
+          Discover the incredible convenience of having top-notch services right at your doorstep! Picture this: no more
+           long waits or complicated tasks. Our platform brings skilled professionals,
+           essential deliveries, and personalized services directly to you. It's all about saving time, making life easier, and ensuring your comfort.
         </p>
       </div>
     </div>
 
-    <div class="grid gap-x-6 md:grid-cols-2 lg:grid-cols-4 lg:gap-x-12 mt-6">
+    <div class="grid gap-x-6 md:grid-cols-1 lg:grid-cols-3 lg:gap-x-12 mt-6">
       <div class="mb-12 lg:mb-0">
         <div class="mb-6 inline-block rounded-full bg-primary-100 p-4 text-primary shadow-sm">
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
@@ -932,8 +913,7 @@ initTE({ Carousel });
         </div>
         <h5 class="mb-4 text-lg font-bold">Support 24/7</h5>
         <p class="text-neutral-500 dark:text-neutral-300">
-          Laudantium totam quas cumque pariatur at doloremque hic quos quia
-          eius. Reiciendis optio minus mollitia rerum labore
+          Experience the reassurance of round-the-clock support at your fingertips! Our commitment to you goes beyond daylight hours, providing 24/7 support that's just a click or call away. 
         </p>
       </div>
 
@@ -947,8 +927,7 @@ initTE({ Carousel });
         </div>
         <h5 class="mb-4 text-lg font-bold">Safe and solid</h5>
         <p class="text-neutral-500 dark:text-neutral-300">
-          Eum nostrum fugit numquam, voluptates veniam neque quibusdam ullam
-          aspernatur odio soluta, quisquam dolore animi
+          Our platform prioritizes your security and reliability, ensuring that every service and interaction is built on a foundation of safety. From vetted professionals to secure transactions, your well-being is our top concern.
         </p>
       </div>
 
@@ -962,24 +941,7 @@ initTE({ Carousel });
         </div>
         <h5 class="mb-4 text-lg font-bold">Extremely fast</h5>
         <p class="text-neutral-500 dark:text-neutral-300">
-          Enim cupiditate, minus nulla dolor cumque iure eveniet facere
-          ullam beatae hic voluptatibus dolores exercitationem
-        </p>
-      </div>
-
-      <div class="mb-12 md:mb-0">
-        <div class="mb-6 inline-block rounded-full bg-primary-100 p-4 text-primary shadow-sm">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
-            stroke="currentColor" class="h-6 w-6">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 6a7.5 7.5 0 107.5 7.5h-7.5V6z" />
-            <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 10.5H21A7.5 7.5 0 0013.5 3v7.5z" />
-          </svg>
-        </div>
-        <h5 class="mb-4 text-lg font-bold">Live analytics</h5>
-        <p class="text-neutral-500 dark:text-neutral-300">
-          Illum doloremque ea, blanditiis sed dolor laborum praesentium
-          maxime sint, consectetur atque ipsum ab adipisci
-        </p>
+          Welcome to the world of extremely fast solutions! Our platform is designed for those who value swift results. Experience services delivered with unparalleled speed, from express deliveries to prompt assistance. 
       </div>
     </div>
   </section>
