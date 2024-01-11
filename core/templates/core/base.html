@@ -24,7 +24,7 @@
     <title>{% block title %} {% endblock %} | NestFixer</title>
   </head>
 
-  <body>
+  <body class="flex flex-col min-h-screen">
     <nav
       class="px-12 py-4 flex flex-col lg:flex-row justify-evenly items-center border-b border-gray-200 bg-amber-300 relative"
     >
@@ -188,7 +188,7 @@
       </div>
     </nav>
 
-    <div class="px-6 py-6">{% block content %} {% endblock %}</div>
+    <div class="flex-grow px-6 py-6">{% block content %} {% endblock %}</div>
 
     <footer class="bg-sky-950">
       <div class="mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8">

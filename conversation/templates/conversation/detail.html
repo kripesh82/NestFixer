@@ -5,7 +5,7 @@
     <div class="border border-gray-300 rounded-lg p-4 bg-gray-100">
         <h1 class="mb-6 text-3xl">Conversation History</h1>
         <hr color="bg-black"><hr><hr><hr><hr><br>
-        <div class="space-y-6">
+        <div class="space-y-6" style="max-height: 350px; overflow-y: auto;">
             {% for message in conversation.messages.all %}
                 <div class="{% if message.created_by == request.user %}flex justify-end{% else %}flex{% endif %}">
                     <div class="p-4 max-w-xs rounded-lg {% if message.created_by == request.user %}bg-blue-600 text-white self-end{% else %}bg-gray-200 self-start{% endif %} border border-gray-300">
@@ -17,6 +17,7 @@
                 </div>
             {% endfor %}
         </div>
+        
         <form method="post" action="." class="mt-6">
             {% csrf_token %}
             <div class="flex items-center border border-gray-300 rounded-lg">
