@@ -26,7 +26,7 @@
 
   <body class="flex flex-col min-h-screen">
     <nav
-      class="px-12 py-4 flex flex-col lg:flex-row justify-evenly items-center border-b border-gray-200 bg-amber-300 relative"
+      class="fixed top-0 left-0 right-0 z-30 px-12 py-4  flex flex-col lg:flex-row justify-evenly items-center border-b border-gray-200 bg-amber-300"
     >
       <div class="flex items-center justify-between lg:justify-start">
         <div class="flex items-center">
@@ -42,7 +42,51 @@
         </div>
       </div>
 
+      <!-- Categories dropdown -->
+<!-- Categories dropdown -->
+
+
+
       <form class="flex items-center" action="{% url 'item:items' %}" method="get">
+        <div class="relative">
+          <button id="dropdownCategoriesButton" data-dropdown-toggle="dropdownCategories" class="mr-0 text-black hover:text-white font-medium rounded-lg text-sm px-4 py-2.5 text-center inline-flex items-center" type="button">
+              Categories
+              <svg class="w-2.5 h-2.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4" />
+              </svg>
+          </button>
+        
+          <div id="dropdownCategories" class="z-10 absolute top-full left-0 hidden bg-white divide-y divide-gray-700 rounded-lg shadow w-44">
+              <!-- Categories dropdown content -->
+              <div class="flex flex-col p-2">
+                  {% for category in categories %}
+                      <a href="#" class="py-1">
+                          <div class="flex items-center">
+                              <a class="text-sm text-gray-700" href="{% url 'item:items' %}?query={{ query }}&Category={{ category.id }}" >{{ category.name }}</a>
+                              <span class="text-xs text-gray-500 ml-2">{{ category.items.count }}</span>
+                          </div>
+                      </a>
+                  {% endfor %}
+              </div>
+          </div>
+        </div>
+        
+        <script>
+          // Add event listeners for the Categories dropdown
+          const dropdownCategoriesButton = document.getElementById("dropdownCategoriesButton");
+          const dropdownCategoriesMenu = document.getElementById("dropdownCategories");
+        
+          dropdownCategoriesButton.addEventListener("click", function (event) {
+              event.stopPropagation();
+              dropdownCategoriesMenu.classList.toggle("hidden");
+          });
+        
+          document.addEventListener("click", function (event) {
+              if (!dropdownCategoriesMenu.contains(event.target) && event.target !== dropdownCategoriesButton) {
+                  dropdownCategoriesMenu.classList.add("hidden");
+              }
+          });
+        </script>
         <label for="default-search" class="sr-only">Search</label>
         <div class="relative flex items-center">
           <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
@@ -188,7 +232,7 @@
       </div>
     </nav>
 
-    <div class="flex-grow px-6 py-6">{% block content %} {% endblock %}</div>
+    <div class="mt-16 px-6 py-6">{% block content %} {% endblock %}</div>
 
     <footer class="bg-sky-950">
       <div class="mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8">
@@ -351,3 +395,5 @@
     </footer>
   </body>
 </html>
+
+

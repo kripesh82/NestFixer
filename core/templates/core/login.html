@@ -41,7 +41,7 @@
                                         <label for="remember" class="text-gray-900 hover:text-gray-500">Remember me</label>
                                     </div>
                                 </div>
-                                <a href="#" class="text-sm font-medium text-primary-600 hover:underline ml-3">Forgot password?</a>
+                                <a href="{% url 'reset_password' %}" class="text-sm font-medium text-primary-600 hover:underline ml-3">Forgot password?</a>
                             </div>
                             {% if form.errors or form.non_field_errors %}
                                 <div class="mt-2 p-4 bg-red-100 rounded-xl">
