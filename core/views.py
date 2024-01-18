@@ -79,7 +79,9 @@ def edit_profile(request):
         'password_form': password_form,
     })
 
-
+def logout_view(request):
+    logout(request)
+    return redirect ("core:login")
 
 @login_required
 def delete_account(request):

@@ -88,7 +88,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'nestfixer',
         'USER':'postgres',
-        'PASSWORD':'iphone53g@',
+        'PASSWORD':'9810119909',
         'HOST':'localhost',
     }
 }
@@ -144,3 +144,5 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS= True
 EMAIL_HOST_USER= 'nestfixer1@gmail.com'
 EMAIL_HOST_PASSWORD = 'oemv vtkq fnkz xrrz'
+
+

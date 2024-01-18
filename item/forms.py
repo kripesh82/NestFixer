@@ -70,3 +70,5 @@ class ReviewForm(forms.ModelForm):
         widgets = {
             'rating': forms.Select(attrs={'class': 'w-full py-2 px-4 rounded-xl border focus:outline-none focus:border-blue-500'}),
         }
+
+

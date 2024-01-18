@@ -8,9 +8,9 @@ class CustomPasswordChangeForm(PasswordChangeForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         # Customize the widget attributes for password fields
-        self.fields['old_password'].widget.attrs['class'] = 'w-full py-4 px-6 rounded-xl'
-        self.fields['new_password1'].widget.attrs['class'] = 'w-full py-4 px-6 rounded-xl'
-        self.fields['new_password2'].widget.attrs['class'] = 'w-full py-4 px-6 rounded-xl'
+        self.fields['old_password'].widget.attrs['class'] = 'w-full py-4 px-6 rounded-xl border-2 border-blue-500'
+        self.fields['new_password1'].widget.attrs['class'] = 'w-full py-4 px-6 rounded-xl border-2 border-blue-500'
+        self.fields['new_password2'].widget.attrs['class'] = 'w-full py-4 px-6 rounded-xl border-2 border-blue-500'
 
 
 class EditProfileForm(UserChangeForm):
@@ -21,16 +21,16 @@ class EditProfileForm(UserChangeForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         # Customize form fields if needed
-        self.fields['username'].widget.attrs['class'] = 'w-full py-4 px-6 rounded-xl'
-        self.fields['email'].widget.attrs['class'] = 'w-full py-4 px-6 rounded-xl'
+        self.fields['username'].widget.attrs['class'] = 'w-full py-4 px-6 rounded-xl border-2 border-blue-500'
+        self.fields['email'].widget.attrs['class'] = 'w-full py-4 px-6 rounded-xl border-2 border-blue-500'
         
         # Check for the correct field names for password change
         if 'password' in self.fields:
-            self.fields['password'].widget.attrs['class'] = 'w-full py-4 px-6 rounded-xl'
+            self.fields['password'].widget.attrs['class'] = 'w-full py-4 px-6 rounded-xl border-2 border-blue-500'
         if 'new_password1' in self.fields:
-            self.fields['new_password1'].widget.attrs['class'] = 'w-full py-4 px-6 rounded-xl'
+            self.fields['new_password1'].widget.attrs['class'] = 'w-full py-4 px-6 rounded-xl border-2 border-blue-500'
         if 'new_password2' in self.fields:
-            self.fields['new_password2'].widget.attrs['class'] = 'w-full py-4 px-6 rounded-xl'
+            self.fields['new_password2'].widget.attrs['class'] = 'w-full py-4 px-6 rounded-xl border-2 border-blue-500'
 
 
 
