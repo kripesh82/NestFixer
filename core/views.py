@@ -9,6 +9,8 @@ from .forms import EditProfileForm
 from django.contrib import messages
 from .forms import EditProfileForm, CustomPasswordChangeForm
 from django.contrib.auth import logout
+from django.contrib.auth import authenticate, login
+from django.contrib.auth.forms import AuthenticationForm
 
 
 # Create your views here.
@@ -33,22 +35,48 @@ def privacy(request):
 def terms(request):
     return render(request ,'core/terms.html')
 
-def signup(request):
-    if request.method=='POST':
-        form = SignupForm (request.POST)
+def login_view(request):
+    if request.method == 'POST':
+        form = AuthenticationForm(request, data=request.POST)
 
         if form.is_valid():
-            form.save()
+            username = form.cleaned_data.get('username')
+            password = form.cleaned_data.get('password')
+            user = authenticate(request, username=username, password=password)
 
-            return redirect('/login')
-    
+            if user is not None:
+                login(request, user)
+                messages.success(request, f"Welcome, {user.username}!")
+                return redirect('core:index')
+            else:
+                messages.error(request, "Invalid username or password.")
+                return render(request, 'core/login.html', {'form': form})
+
     else:
-        form=SignupForm()
+        form = AuthenticationForm()
 
-    form = SignupForm()
-    return render(request, 'core/signup.html', {
-        'form':form
-    })
+    return render(request, 'core/login.html', {'form': form})
+
+def signup(request):
+    if request.method == 'POST':
+        form = SignupForm(request.POST)
+
+        if form.is_valid():
+            password1 = form.cleaned_data.get('password1')
+            password2 = form.cleaned_data.get('password2')
+
+            if password1 != password2:
+                messages.error(request, "Passwords do not match.")
+                return render(request, 'core/signup.html', {'form': form})
+
+            form.save()
+            messages.success(request, "Account created successfully. You can now log in.")
+            return redirect('/login')
+
+    else:
+        form = SignupForm()
+
+    return render(request, 'core/signup.html', {'form': form})
     
 @login_required
 def edit_profile(request):
@@ -79,9 +107,7 @@ def edit_profile(request):
         'password_form': password_form,
     })
 
-def logout_view(request):
-    logout(request)
-    return redirect ("core:login")
+
 
 @login_required
 def delete_account(request):
@@ -98,3 +124,7 @@ def delete_account(request):
         'user_form': user_form,
         'password_form': password_form,
     })
+
+def logout_view(request):
+    logout(request)
+    return redirect ("core:login")
