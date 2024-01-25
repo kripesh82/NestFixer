@@ -5,13 +5,11 @@
 
 {% block content %}
 <div> 
-    <form class=" mb-4 flex items-center" method="get" accept="{% url 'item:items' %}" >   
-       
-        <div class="relative w-full ">
-            
-            <input name="query" class="w-full my-2 py-2 bg-gray-200 border rounded-xl shadow-xl" type="text" value="{{query}}" placeholder="   Search from here" >
+    <form class="mb-4 flex items-center" method="get" action="{% url 'item:items' %}">
+        <div class="relative w-full">
+            <input name="query" class="w-full my-2 py-2 bg-gray-200 border rounded-xl shadow-xl" type="text" value="{{ query }}" placeholder="   Search from here">
         </div>
-        <button type="submit" class="p-2.5 ms-2 text-sm font-medium text-white bg-blue-900 rounded-lg border border-indigo-900 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 ">
+        <button type="submit" class="p-2.5 ms-2 text-sm font-medium text-white bg-blue-900 rounded-lg border border-indigo-900 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300">
             <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
             </svg>
@@ -19,17 +17,22 @@
         </button>
     </form>
 
-        <div>  
+    <div>  
         <div class="flex items-center justify-end mb-2">
             <p class="text-gray-500 dark:text-gray-300">Sort</p>
-            <select class="font-medium text-gray-700 bg-transparent dark:text-gray-500 focus:outline-none">
-                <option value="#">Recommended</option>
-                <option value="#">Price</option>
-            </select>
+            <form action="{% url 'item:items' %}" method="get" class="ml-2">
+                <select name="sort" class="font-medium text-gray-700 bg-transparent dark:text-gray-500 focus:outline-none" onchange="this.form.submit()">
+                    <option value="" {% if not sort_by_price and not sort_by_rating %} selected {% endif %}>Newest</option>
+                    <option value="lowest" {% if sort_by_price == 'lowest' %} selected {% endif %}>Price: Low to High</option>
+                    <option value="highest" {% if sort_by_price == 'highest' %} selected {% endif %}>Price: High to Low</option>
+                    <option value="lowest_rated" {% if sort_by_rating == 'lowest_rated' %} selected {% endif %}>Lowest Rated</option>
+                    <option value="highest_rated" {% if sort_by_rating == 'highest_rated' %} selected {% endif %}>Highest Rated</option>
+                </select>
+            </form>
         </div>
-    
-  
-</div>
+        
+    </div>
+
     <div class="pb-6 grid grid-cols-4 gap-4 px-1 flex   overflow-y-auto">
         <div class="pb-2 flex flex-col  justify-start   rounded-lg overflow-y-auto max-5-sm mx-auto shadow-lg">
             
@@ -46,6 +49,28 @@
                     
 
             <hr class="my-6">
+
+            <!-- Add is_negotiable filter -->
+
+            <form class="" method="get" action="{% url 'item:items' %}">
+<label for="is_negotiable" class="block text-gray-700 dark:text-gray-300">Negotiable</label>
+<select name="is_negotiable" class="mt-1 mb-2 p-2 w-full border rounded-lg">
+    <option value="" {% if is_negotiable is None %} selected {% endif %}>All</option>
+    <option value="1" {% if is_negotiable == '1' %} selected {% endif %}>Negotiable</option>
+    <option value="0" {% if is_negotiable == '0' %} selected {% endif %}>Not Negotiable</option>
+</select>
+
+<!-- Add price range filter -->
+<label for="min_price" class="block text-gray-700 dark:text-gray-300">Min Price</label>
+<input type="number" name="min_price" class="mt-1 mb-2 p-2 w-full border rounded-lg" value="{{ min_price }}">
+
+<label for="max_price" class="block text-gray-700 dark:text-gray-300">Max Price</label>
+<input type="number" name="max_price" class="mt-1 mb-2 p-2 w-full border rounded-lg" value="{{ max_price }}">
+<button type="submit" class="p-2.5 ms-2 text-sm font-medium text-white bg-blue-900 rounded-lg border border-indigo-900 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300">
+    Apply Filters
+</button>
+</form>
+<hr>
             
             <ul>
                 <li class="px-6">
@@ -67,6 +92,31 @@
                                     <h2 class="font-bold text-xl mb-2">{{ item.name }}</h2>
                                     <p class="text-gray-500">{{ item.Category }}</p>
                                     <p class="text-gray-500">Price: Rs {{ item.price }} per day</p>
+                                    <p>Average Rating: {{ item.average_rating|default:"N/A" }}</p>
+                                    <div class="showcase-rating">
+                                        {% if item.average_rating %}
+                                            <span>{{ item.average_rating|floatformat:2 }}</span>
+                                            {% for i in "12345" %}
+                                                {% if i|add:"0" <= item.average_rating %}
+                                                    <i class="fa fa-star checked" id="check-star" style="color: gold;"></i>
+                                                {% else %}
+                                                    <i class="fa fa-star" id="check-star" style="color: grey;"></i>
+                                                {% endif %}
+                                            {% endfor %}
+                                        {% else %}
+                                            <!-- If there are no ratings -->
+                                            {% for i in "12345" %}
+                                                <i class="fa fa-star" id="star" style="color: grey;"></i>
+                                            {% endfor %}
+                                            &nbsp;<span>No ratings</span>
+                                        {% endif %}
+                                    </div>
+                                    
+                                      
+                                    
+                                    
+                                    
+                                    
                                 </div>
                             </div>
                         </a>

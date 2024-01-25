@@ -40,6 +40,7 @@
 
     <p class="text-gray-700"><strong>Description:</strong> {{ item.description }}</p>
 
+
     {% if item.phone_number %}
         <p class="text-gray-700">
             <strong>Phone Number:</strong>
@@ -47,12 +48,34 @@
         </p>
     {% endif %}
 
+
     {% if item.email %}
         <p class="text-gray-700">
             <strong>Email:</strong>
             <a href="mailto:{{ item.email }}" class="text-blue-500 hover:underline">{{ item.email }}</a>
         </p>
     {% endif %}
+
+    <div class="showcase-rating">
+        <strong>Average Rating:</strong>
+        {% if item.average_rating %}
+            <span>{{ item.average_rating|floatformat:2 }} out of 5</span>
+            {% for i in "12345" %}
+                {% if i|add:"0" <= item.average_rating %}
+                    <i class="fa fa-star checked" id="check-star" style="color: gold;"></i>
+                {% else %}
+                    <i class="fa fa-star" id="check-star" style="color: grey;"></i>
+                {% endif %}
+            {% endfor %}
+        {% else %}
+            &nbsp;<span>No ratings</span>
+        {% endif %}
+    </div>
+
+    
+
+
+
 
 
     
@@ -63,9 +86,6 @@
         <p class="text-gray-700"><strong>Negotiable:</strong> {{ item.is_negotiable|yesno:"Yes,No" }}</p>
     {% endif %}
 
-    {% if avg_rating %}
-        <p class="mt-2"><strong>Average Rating:</strong> {{ avg_rating|floatformat:1 }}/5</p>
-    {% endif %}
 
 
 
@@ -123,62 +143,18 @@
             Contact Person
         </a>
     {% endif %}
+
+
+
+    <div>
+        <div class="window_content" id="rating_window">
+            {% include 'item/rating.html'%}
+        </div>
+    </div>
 </div>
 
 
-        <!-- Comments and Reviews Section -->
-        <div class="md:w-1/2 space-y-8">
-            <!-- Comments Section -->
-            <div class="mb-8">
-                <h2 class="mb-4 text-2xl font-semibold">Comments</h2>
-                <div class="space-y-4">
-                    {% for comment in item.comments.all %}
-                        <div class="bg-gray-100 p-4 rounded-md">
-                            <p class="text-gray-700"><strong>{{ comment.user.username }}:</strong> {{ comment.text }}</p>
-                        </div>
-                    {% endfor %}
-
-                    <!-- Comment Form -->
-                    {% if request.user.is_authenticated %}
-                        <form method="post" action="{% url 'item:detail' item.id %}">
-                            {% csrf_token %}
-                            {{ comment_form.as_p }}
-                            <button type="submit" name="comment_submit"
-                                    class="bg-sky-950 text-yellow-400 text-xl font-semibold px-4 py-2 rounded-full hover:bg-blue-700">Comment
-                            </button>
-                        </form>
-                    {% else %}
-                        <p>Login to add a comment.</p>
-                    {% endif %}
-                </div>
-            </div>
-
-            <!-- Reviews Section -->
-            <div>
-                <h2 class="mb-4 text-2xl font-semibold">Reviews</h2>
-                <div class="space-y-4">
-                    {% for review in item.reviews.all %}
-                        <div class="bg-gray-100 p-4 rounded-md">
-                            <p class="text-gray-700">
-                                <strong>{{ review.user.username }}:</strong> Rating: {{ review.rating }}
-                            </p>
-                        </div>
-                    {% endfor %}
-
-                    <!-- Review Form -->
-                    {% if request.user.is_authenticated %}
-                        <form method="post" action="{% url 'item:detail' item.id %}">
-                            {% csrf_token %}
-                            {{ review_form.as_p }}
-                            <button type="submit" name="review_submit"
-                                    class="bg-sky-950 text-yellow-400 text-xl font-semibold px-4 py-2 rounded-full hover:bg-blue-700">Review
-                            </button>
-                        </form>
-                    {% else %}
-                        <p>Login to add a review.</p>
-                    {% endif %}
-                </div>
-            </div>
+            
         </div>
     </div>
 

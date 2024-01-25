@@ -2,15 +2,16 @@
 {% block title %}Conversation{% endblock %}
 
 {% block content %}
-    <div class="border border-gray-300 rounded-lg p-4 bg-gray-100">
+    <div class="border border-gray-300 rounded-lg p-4 bg-gradient-to-r from-teal-500 to-blue-500">
         <h1 class="mb-6 text-3xl">Conversation History</h1>
-        <hr color="bg-black"><hr><hr><hr><hr><br>
-        <div class="space-y-6" style="max-height: 350px; overflow-y: auto;">
+        <hr class="border-b-2 border-gray-400 mb-6">
+
+        <div class="space-y-6 max-h-96 overflow-y-auto">
             {% for message in conversation.messages.all %}
-                <div class="{% if message.created_by == request.user %}flex justify-end{% else %}flex{% endif %}">
+                <div class="{% if message.created_by == request.user %}flex justify-end items-center{% else %}flex items-center{% endif %}">
                     <div class="p-4 max-w-xs rounded-lg {% if message.created_by == request.user %}bg-blue-600 text-white self-end{% else %}bg-gray-200 self-start{% endif %} border border-gray-300">
                         <p class="mb-2 text-sm">
-                            <strong>{{ message.created_by.username }}</strong> @{{ message.created_at }}
+                            <strong class="text-lg">{{ message.created_by.username }}</strong> <span class="text-xs text-gray-500">@{{ message.created_at }}</span>
                         </p>
                         <p class="text-sm">{{ message.content }}</p>
                     </div>
@@ -21,8 +22,8 @@
         <form method="post" action="." class="mt-6">
             {% csrf_token %}
             <div class="flex items-center border border-gray-300 rounded-lg">
-                <textarea name="content" class="w-full rounded-lg border-none p-2 mr-2" placeholder="Type your message"></textarea>
-                <button type="submit" class="py-4 px-14 text-sm bg-teal-500 hover:bg-teal-700 rounded-lg text-white">Send</button>
+                <textarea name="content" class="w-full rounded-lg border-none p-2 mr-2 focus:outline-none focus:ring focus:border-blue-300" placeholder="Type your message"></textarea>
+                <button type="submit" class="py-2 px-6 text-sm bg-teal-500 hover:bg-teal-700 rounded-lg text-white transition duration-300 ease-in-out">Send</button>
             </div>
         </form>
     </div>

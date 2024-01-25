@@ -11,17 +11,24 @@ from .forms import EditProfileForm, CustomPasswordChangeForm
 from django.contrib.auth import logout
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.forms import AuthenticationForm
+from django.db.models import Avg
 
+from django.db.models import Avg, Min
 
-# Create your views here.
 def index(request):
-    items = Item.objects.filter(is_available=True).order_by('-id')[:4]  # Assuming 'is_available' filters availability
-    categories = category.objects.all()  # Retrieve all categories
+    items = Item.objects.filter(is_available=True).order_by('-id')[:4]
+    highest_rated_items = Item.objects.annotate(avg_rating=Avg('review__rating')).exclude(avg_rating__isnull=True).order_by('-avg_rating')[:4]
+    cheapest_items = Item.objects.filter(is_available=True).order_by('price')[:4]
+    categories = category.objects.all()
 
     return render(request, 'core/index.html', {
         'categories': categories,
         'items': items,
+        'highest_rated_items': highest_rated_items,
+        'cheapest_items': cheapest_items,
     })
+
+
 
 def contact(request):
     return render(request, 'core/contact.html')

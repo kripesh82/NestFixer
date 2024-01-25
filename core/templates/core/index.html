@@ -72,7 +72,7 @@ data-te-ride="carousel"
     style="backface-visibility: hidden"
   >
     <img
-      src="media\static\images\fixed width three.png"
+      src="media\static\images\sliderasda.png"
       class="block w-full"
       alt="..."
     />
@@ -168,133 +168,64 @@ initTE({ Carousel });
 
 <!-- Categoreis -->
 <div class="mt-6 px-6 py-12 bg-gray-100 rounded-xl">
-  <h2 class="mb-12 text-2xl text-center">Categories</h2>
+  <h2 class="mb-6 text-2xl text-center">Explore Our Poupular Categoreis</h2>
+  <h2 class="text-2xl text-center">Just a click away!!!</h2>
 
   <div>
     
     <div class="flex items-center justify-center w-full h-full py-24 sm:py-8 px-4">
       <div class="w-full relative flex items-center justify-center">
           <button aria-label="slide backward" class="absolute z-30 left-0 ml-10 focus:outline-none focus:bg-gray-400 focus:ring-2 focus:ring-offset-2 focus:ring-gray-400 cursor-pointer" id="prev">
-              <svg class="dark:text-gray-900" width="8" height="14" viewBox="0 0 8 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <svg class="dark:text-gray-900" width="16" height="28"viewBox="0 0 8 14" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M7 1L1 7L7 13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
               </svg>
           </button>
           <div class="w-full h-full mx-auto overflow-x-hidden overflow-y-hidden">
               <div id="slider" class="h-full flex lg:gap-8 md:gap-6 gap-14 items-center justify-start transition ease-out duration-700">
                   <div class="flex flex-shrink-0 relative w-full sm:w-auto">
-                      <img src="https://i.ibb.co/tCfVky2/carosel-3.png" class="object-cover object-center w-full" />
-                      <div class="bg-gray-800 bg-opacity-30 absolute w-full h-full p-6">
-                          <h2 class="lg:text-xl leading-4 text-base lg:leading-5 text-white dark:text-gray-900">Electrician</h2>
-                          <div class="flex h-full items-end pb-6">
-                              <a class="text-xl lg:text-2xl font-semibold leading-5 lg:leading-6 text-white dark:text-gray-900" href="{% url 'item:items' %}?query={{ query }}&Category=1" >{{ category.name }}
-                                {{ category.name }}
-                                Explore Electricians</a>
-                          </div>
-                      </div>
+                      <a href="{% url 'item:items' %}?query={{ query }}&Category=1" >
+                        <img src="media\static\images\electricain.png" class="object-cover object-center w-full transform overflow-hidden rounded-lg bg-gray-100 dark:bg-white shadow-md duration-300 hover:scale-105 hover:shadow-lg" />
+                      </a>
                   </div>
                   <div class="flex flex-shrink-0 relative w-full sm:w-auto">
-                      <img src="https://i.ibb.co/DWrGxX6/carosel-2.png" alt="sitting area" class="object-cover object-center w-full" />
-                      <div class="bg-gray-800 bg-opacity-30 absolute w-full h-full p-6">
-                          <h2 class="lg:text-xl leading-4 text-base lg:leading-5 text-white dark:text-gray-900">Catalog 2</h2>
-                          <div class="flex h-full items-end pb-6">
-                              <h3 class="text-xl lg:text-2xl font-semibold leading-5 lg:leading-6 text-white dark:text-gray-900">Minimal Interior</h3>
-                          </div>
-                      </div>
+                    <a href="{% url 'item:items' %}?query={{ query }}&Category=2" >
+                      <img src="media\static\images\plumber.png" class="object-cover object-center w-full rounded-lg transform overflow-hidden rounded-lg bg-gray-100 dark:bg-white shadow-md duration-300 hover:scale-105 hover:shadow-lg" />
+                    </a>
                   </div>
                   <div class="flex flex-shrink-0 relative w-full sm:w-auto">
-                      <img src="https://i.ibb.co/tCfVky2/carosel-3.png" alt="sitting area" class="object-cover object-center w-full" />
-                      <div class="bg-gray-800 bg-opacity-30 absolute w-full h-full p-6">
-                          <h2 class="lg:text-xl leading-4 text-base lg:leading-5 text-white dark:text-gray-900">Catalog 2</h2>
-                          <div class="flex h-full items-end pb-6">
-                              <h3 class="text-xl lg:text-2xl font-semibold leading-5 lg:leading-6 text-white dark:text-gray-900">Minimal Interior</h3>
-                          </div>
-                      </div>
+                    <a href="{% url 'item:items' %}?query={{ query }}&Category=3" >
+                      <img src="media\static\images\painter.png" class="object-cover object-center w-full transform overflow-hidden rounded-lg bg-gray-100 dark:bg-white shadow-md duration-300 hover:scale-105 hover:shadow-lg" />
+                    </a>
                   </div>
                   <div class="flex flex-shrink-0 relative w-full sm:w-auto">
-                      <img src="https://i.ibb.co/rFsGfr5/carosel-4.png" alt="sitting area" class="object-cover object-center w-full" />
-                      <div class="bg-gray-800 bg-opacity-30 absolute w-full h-full p-6">
-                          <h2 class="lg:text-xl leading-4 text-base lg:leading-5 text-white dark:text-gray-900">Catalog 2</h2>
-                          <div class="flex h-full items-end pb-6">
-                              <h3 class="text-xl lg:text-2xl font-semibold leading-5 lg:leading-6 text-white dark:text-gray-900">Minimal Interior</h3>
-                          </div>
-                      </div>
+                    <a href="{% url 'item:items' %}?query={{ query }}&Category=4" >
+                      <img src="media\static\images\furniture.png" class="object-cover object-center w-full transform overflow-hidden rounded-lg bg-gray-100 dark:bg-white shadow-md duration-300 hover:scale-105 hover:shadow-lg" />
+                    </a>
                   </div>
                   <div class="flex flex-shrink-0 relative w-full sm:w-auto">
-                      <img src="https://i.ibb.co/fDngH9G/carosel-1.png" alt="black chair and white table" class="object-cover object-center w-full" />
-                      <div class="bg-gray-800 bg-opacity-30 absolute w-full h-full p-6">
-                          <h2 class="lg:text-xl leading-4 text-base lg:leading-5 text-white dark:text-gray-900">Catalog 2</h2>
-                          <div class="flex h-full items-end pb-6">
-                              <h3 class="text-xl lg:text-2xl font-semibold leading-5 lg:leading-6 text-white dark:text-gray-900">Minimal Interior</h3>
-                          </div>
-                      </div>
+                    <a href="{% url 'item:items' %}?query={{ query }}&Category=5" >
+                      <img src="media\static\images\conditioniong.png" class="object-cover object-center w-full transform overflow-hidden rounded-lg bg-gray-100 dark:bg-white shadow-md duration-300 hover:scale-105 hover:shadow-lg" />
+                    </a>
                   </div>
                   <div class="flex flex-shrink-0 relative w-full sm:w-auto">
-                      <img src="https://i.ibb.co/DWrGxX6/carosel-2.png" alt="sitting area" class="object-cover object-center w-full" />
-                      <div class="bg-gray-800 bg-opacity-30 absolute w-full h-full p-6">
-                          <h2 class="lg:text-xl leading-4 text-base lg:leading-5 text-white dark:text-gray-900">Catalog 2</h2>
-                          <div class="flex h-full items-end pb-6">
-                              <h3 class="text-xl lg:text-2xl font-semibold leading-5 lg:leading-6 text-white dark:text-gray-900">Minimal Interior</h3>
-                          </div>
-                      </div>
+                    <a href="{% url 'item:items' %}?query={{ query }}&Category=6" >
+                      <img src="media\static\images\carpenter.png" class="object-cover object-center w-full transform overflow-hidden rounded-lg bg-gray-100 dark:bg-white shadow-md duration-300 hover:scale-105 hover:shadow-lg" />
+                    </a>
                   </div>
                   <div class="flex flex-shrink-0 relative w-full sm:w-auto">
-                      <img src="https://i.ibb.co/tCfVky2/carosel-3.png" alt="sitting area" class="object-cover object-center w-full" />
-                      <div class="bg-gray-800 bg-opacity-30 absolute w-full h-full p-6">
-                          <h2 class="lg:text-xl leading-4 text-base lg:leading-5 text-white dark:text-gray-900">Catalog 2</h2>
-                          <div class="flex h-full items-end pb-6">
-                              <h3 class="text-xl lg:text-2xl font-semibold leading-5 lg:leading-6 text-white dark:text-gray-900">Minimal Interior</h3>
-                          </div>
-                      </div>
+                    <a href="{% url 'item:items' %}?query={{ query }}&Category=7" >
+                      <img src="media\static\images\repairmen.png" class="object-cover object-center w-full transform overflow-hidden rounded-lg bg-gray-100 dark:bg-white shadow-md duration-300 hover:scale-105 hover:shadow-lg" />
+                    </a>
                   </div>
                   <div class="flex flex-shrink-0 relative w-full sm:w-auto">
-                      <img src="https://i.ibb.co/rFsGfr5/carosel-4.png" alt="sitting area" class="object-cover object-center w-full" />
-                      <div class="bg-gray-800 bg-opacity-30 absolute w-full h-full p-6">
-                          <h2 class="lg:text-xl leading-4 text-base lg:leading-5 text-white dark:text-gray-900">Catalog 2</h2>
-                          <div class="flex h-full items-end pb-6">
-                              <h3 class="text-xl lg:text-2xl font-semibold leading-5 lg:leading-6 text-white dark:text-gray-900">Minimal Interior</h3>
-                          </div>
-                      </div>
-                  </div>
-                  <div class="flex flex-shrink-0 relative w-full sm:w-auto">
-                      <img src="https://i.ibb.co/fDngH9G/carosel-1.png" alt="black chair and white table" class="object-cover object-center w-full" />
-                      <div class="bg-gray-800 bg-opacity-30 absolute w-full h-full p-6">
-                          <h2 class="lg:text-xl leading-4 text-base lg:leading-5 text-white dark:text-gray-900">Catalog 2</h2>
-                          <div class="flex h-full items-end pb-6">
-                              <h3 class="text-xl lg:text-2xl font-semibold leading-5 lg:leading-6 text-white dark:text-gray-900">Minimal Interior</h3>
-                          </div>
-                      </div>
-                  </div>
-                  <div class="flex flex-shrink-0 relative w-full sm:w-auto">
-                      <img src="https://i.ibb.co/DWrGxX6/carosel-2.png" alt="sitting area" class="object-cover object-center w-full" />
-                      <div class="bg-gray-800 bg-opacity-30 absolute w-full h-full p-6">
-                          <h2 class="lg:text-xl leading-4 text-base lg:leading-5 text-white dark:text-gray-900">Catalog 2</h2>
-                          <div class="flex h-full items-end pb-6">
-                              <h3 class="text-xl lg:text-2xl font-semibold leading-5 lg:leading-6 text-white dark:text-gray-900">Minimal Interior</h3>
-                          </div>
-                      </div>
-                  </div>
-                  <div class="flex flex-shrink-0 relative w-full sm:w-auto">
-                      <img src="https://i.ibb.co/tCfVky2/carosel-3.png" alt="sitting area" class="object-cover object-center w-full" />
-                      <div class="bg-gray-800 bg-opacity-30 absolute w-full h-full p-6">
-                          <h2 class="lg:text-xl leading-4 text-base lg:leading-5 text-white dark:text-gray-900">Catalog 2</h2>
-                          <div class="flex h-full items-end pb-6">
-                              <h3 class="text-xl lg:text-2xl font-semibold leading-5 lg:leading-6 text-white dark:text-gray-900">Minimal Interior</h3>
-                          </div>
-                      </div>
-                  </div>
-                  <div class="flex flex-shrink-0 relative w-full sm:w-auto">
-                      <img src="https://i.ibb.co/rFsGfr5/carosel-4.png" alt="sitting area" class="object-cover object-center w-full" />
-                      <div class="bg-gray-800 bg-opacity-30 absolute w-full h-full p-6">
-                          <h2 class="lg:text-xl leading-4 text-base lg:leading-5 text-white dark:text-gray-900">Catalog 2</h2>
-                          <div class="flex h-full items-end pb-6">
-                              <h3 class="text-xl lg:text-2xl font-semibold leading-5 lg:leading-6 text-white dark:text-gray-900">Minimal Interior</h3>
-                          </div>
-                      </div>
+                    <a href="{% url 'item:items' %}?query={{ query }}&Category=8" >
+                      <img src="media\static\images\mechanic.png" class="object-cover object-center w-full transform overflow-hidden rounded-lg bg-gray-100 dark:bg-white shadow-md duration-300 hover:scale-105 hover:shadow-lg" />
+                    </a>
                   </div>
               </div>
           </div>
           <button aria-label="slide forward" class="absolute z-30 right-0 mr-10 focus:outline-none focus:bg-gray-400 focus:ring-2 focus:ring-offset-2 focus:ring-gray-400" id="next">
-              <svg class="dark:text-gray-900" width="8" height="14" viewBox="0 0 8 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <svg class="dark:text-gray-900" width="16" height="28" viewBox="0 0 8 14" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M1 1L7 7L1 13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
               </svg>
           </button>
@@ -342,11 +273,26 @@ prev.addEventListener("click", goPrev);
           <p class="mb-2 text-base text-black dark:text-gray-700">{{ item.description }}</p>
           <div class="flex items-center">
             <p class="mr-2 text-lg font-semibold text-black dark:text-gray-900">Rs {{ item.price }} per day</p>
-            {% if item.previous_price %}
-            <p class="text-base font-medium text-gray-500 line-through dark:text-gray-300">Rs {{ item.previous_price }}</p>
-            <p class="ml-auto text-base font-medium text-green-500">{{ item.discount }}</p>
-            {% endif %}
+            <div class="showcase-rating">
+              {% if item.average_rating %}
+                  <span>{{ item.average_rating|floatformat:2 }}</span>
+                  {% for i in "12345" %}
+                      {% if i|add:"0" <= item.average_rating %}
+                          <i class="fa fa-star checked" id="check-star" style="color: gold;"></i>
+                      {% else %}
+                          <i class="fa fa-star" id="check-star" style="color: grey;"></i>
+                      {% endif %}
+                  {% endfor %}
+              {% else %}
+                  <!-- If there are no ratings -->
+                  {% for i in "12345" %}
+                      <i class="fa fa-star" id="star" style="color: grey;"></i>
+                  {% endfor %}
+                  &nbsp;<span>No ratings</span>
+              {% endif %}
           </div>
+
+           </div>
         </div>
       </div>
     </a>
@@ -354,6 +300,92 @@ prev.addEventListener("click", goPrev);
   </div>
 </div>
 
+<!-- Highest Rated -->
+<div class="mt-6 px-6 py-12 bg-gray-100 rounded-xl">
+  <h2 class="mb-4 text-2xl text-center font-bold text-black dark:text-black border-b-2 border-gray-300 dark:border-gray-300 pb-2">
+    Highest Rated Services
+  </h2>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3">
+    {% for item in highest_rated_items %}
+      <a href="{% url 'item:detail' item.id %}">
+        <div class="mx-auto mt-6 w-full md:w-80 transform overflow-hidden rounded-lg bg-gray-100 dark:bg-white shadow-md duration-300 hover:scale-105 hover:shadow-lg">
+          <img class="h-48 w-full object-cover object-center rounded-t-lg" src="{{ item.image.url }}" alt="{{ item.name }} Image" />
+          <div class="p-4">
+            <h2 class="mb-2 text-lg font-medium text-black dark:text-gray-900">{{ item.name }}</h2>
+            <p class="mb-2 text-base text-black dark:text-gray-700">{{ item.description }}</p>
+            <div class="flex items-center">
+              <p class="mr-2 text-lg font-semibold text-black dark:text-gray-900">Rs {{ item.price }} per day</p>
+              <div class="showcase-rating">
+                {% if item.average_rating %}
+                    <span>{{ item.average_rating|floatformat:2 }}</span>
+                    {% for i in "12345" %}
+                        {% if i|add:"0" <= item.average_rating %}
+                            <i class="fa fa-star checked" id="check-star" style="color: gold;"></i>
+                        {% else %}
+                            <i class="fa fa-star" id="check-star" style="color: grey;"></i>
+                        {% endif %}
+                    {% endfor %}
+                {% else %}
+                    <!-- If there are no ratings -->
+                    {% for i in "12345" %}
+                        <i class="fa fa-star" id="star" style="color: grey;"></i>
+                    {% endfor %}
+                    &nbsp;<span>No ratings</span>
+                {% endif %}
+            </div>
+  
+             </div>
+          </div>
+        </div>
+      </a>
+    {% endfor %}
+  </div>
+</div>
+
+
+<!-- offers -->
+<div class="mt-6 px-6 py-12 bg-gray-100 rounded-xl">
+  <h2 class="mb-4 text-2xl text-center font-bold text-black dark:text-black border-b-2 border-gray-300 dark:border-gray-300 pb-2">
+    Offers
+  </h2>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3">
+    {% for item in cheapest_items %}
+      <a href="{% url 'item:detail' item.id %}">
+        <div class="mx-auto mt-6 w-full md:w-80 transform overflow-hidden rounded-lg bg-gray-100 dark:bg-white shadow-md duration-300 hover:scale-105 hover:shadow-lg">
+          <img class="h-48 w-full object-cover object-center rounded-t-lg" src="{{ item.image.url }}" alt="{{ item.name }} Image" />
+          <div class="p-4">
+            <h2 class="mb-2 text-lg font-medium text-black dark:text-gray-900">{{ item.name }}</h2>
+            <p class="mb-2 text-base text-black dark:text-gray-700">{{ item.description }}</p>
+            <div class="flex items-center">
+              <p class="mr-2 text-lg font-semibold text-black dark:text-gray-900">Rs {{ item.price }} per day</p>
+              <div class="showcase-rating">
+                {% if item.average_rating %}
+                    <span>{{ item.average_rating|floatformat:2 }}</span>
+                    {% for i in "12345" %}
+                        {% if i|add:"0" <= item.average_rating %}
+                            <i class="fa fa-star checked" id="check-star" style="color: gold;"></i>
+                        {% else %}
+                            <i class="fa fa-star" id="check-star" style="color: grey;"></i>
+                        {% endif %}
+                    {% endfor %}
+                {% else %}
+                    <!-- If there are no ratings -->
+                    {% for i in "12345" %}
+                        <i class="fa fa-star" id="star" style="color: grey;"></i>
+                    {% endfor %}
+                    &nbsp;<span>No ratings</span>
+                {% endif %}
+            </div>
+  
+             </div>
+          </div>
+        </div>
+      </a>
+    {% endfor %}
+  </div>
+</div>
 
 
 <!-- Mid-Section FAQ -->

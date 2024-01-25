@@ -2,6 +2,9 @@ from django.urls import path
 from . import views
 from django.contrib.auth import views as auth_views
 from .forms import LoginForm
+from django.conf import settings
+from django.conf.urls.static import static
+
 
 app_name = 'core'
 
@@ -18,4 +21,5 @@ urlpatterns = [
     path('edit_profile/', views.edit_profile, name='edit_profile'),
     path('delete_account/', views.delete_account, name='delete_account'),  
     
-]
+]+ static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
+
