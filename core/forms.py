@@ -31,10 +31,14 @@ class EditProfileForm(UserChangeForm):
         # Check for the correct field names for password change
         if 'password' in self.fields:
             self.fields['password'].widget.attrs['class'] = 'w-full py-4 px-6 rounded-xl'
+            self.fields['password'].widget.attrs['placeholder'] = 'Enter Old Password'
+
         if 'new_password1' in self.fields:
             self.fields['new_password1'].widget.attrs['class'] = 'w-full py-4 px-6 rounded-xl'
+            self.fields['new_password1'].widget.attrs['placeholder'] = 'Enter New Password'
         if 'new_password2' in self.fields:
             self.fields['new_password2'].widget.attrs['class'] = 'w-full py-4 px-6 rounded-xl'
+            self.fields['new_password1'].widget.attrs['placeholder'] = 'Confirm New Password'
 
 
 

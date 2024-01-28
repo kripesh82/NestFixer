@@ -42,7 +42,7 @@
             <ul >
                 {% for category in categories %}
                 <li class="py-2  items-center rounded-xl {% if category.id == category_id %} bg-gray-100 {% endif %}">
-                    <a class="text-blue-900 font-semibold hover:underline px-5" href="{% url 'item:items' %}?query={{ query }}&Category={{ category.id }}">{{ category.name }}</a>
+                    <a class="text-blue-900 font-semibold hover:underline px-5" href="{% url 'item:items' %}?query={{ query }}&Category={{ category.id }}">{{ category.name }} ({{ category.items.count }})</a>
                 </li>
                 {% endfor %}
             </ul>
@@ -91,8 +91,7 @@
                                 <div class="px-6 py-4">
                                     <h2 class="font-bold text-xl mb-2">{{ item.name }}</h2>
                                     <p class="text-gray-500">{{ item.Category }}</p>
-                                    <p class="text-gray-500">Price: Rs {{ item.price }} per day</p>
-                                    <p>Average Rating: {{ item.average_rating|default:"N/A" }}</p>
+                                    <p class="text-gray-500">Rs {{ item.price }} per day</p>
                                     <div class="showcase-rating">
                                         {% if item.average_rating %}
                                             <span>{{ item.average_rating|floatformat:2 }}</span>
@@ -104,10 +103,6 @@
                                                 {% endif %}
                                             {% endfor %}
                                         {% else %}
-                                            <!-- If there are no ratings -->
-                                            {% for i in "12345" %}
-                                                <i class="fa fa-star" id="star" style="color: grey;"></i>
-                                            {% endfor %}
                                             &nbsp;<span>No ratings</span>
                                         {% endif %}
                                     </div>

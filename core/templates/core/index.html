@@ -113,8 +113,8 @@ prev.addEventListener("click", goPrev);
         <img class="h-48 w-full object-cover object-center rounded-t-lg" src="{{ item.image.url }}" alt="{{ item.name }} Image" />
         <div class="p-4">
           <h2 class="mb-2 text-lg font-medium text-black dark:text-gray-900">{{ item.name }}</h2>
-          <p class="mb-2 text-base text-black dark:text-gray-700">{{ item.description }}</p>
-          <div class="flex items-center">
+          <p class="mb-2 text-base text-black dark:text-gray-700">{{ item.Category }}</p>
+          <div>
             <p class="mr-2 text-lg font-semibold text-black dark:text-gray-900">Rs {{ item.price }} per day</p>
             <div class="showcase-rating">
               {% if item.average_rating %}
@@ -127,10 +127,6 @@ prev.addEventListener("click", goPrev);
                       {% endif %}
                   {% endfor %}
               {% else %}
-                  <!-- If there are no ratings -->
-                  {% for i in "12345" %}
-                      <i class="fa fa-star" id="star" style="color: grey;"></i>
-                  {% endfor %}
                   &nbsp;<span>No ratings</span>
               {% endif %}
           </div>
@@ -156,8 +152,8 @@ prev.addEventListener("click", goPrev);
           <img class="h-48 w-full object-cover object-center rounded-t-lg" src="{{ item.image.url }}" alt="{{ item.name }} Image" />
           <div class="p-4">
             <h2 class="mb-2 text-lg font-medium text-black dark:text-gray-900">{{ item.name }}</h2>
-            <p class="mb-2 text-base text-black dark:text-gray-700">{{ item.description }}</p>
-            <div class="flex items-center">
+            <p class="mb-2 text-base text-black dark:text-gray-700">{{ item.Category }}</p>
+            <div>
               <p class="mr-2 text-lg font-semibold text-black dark:text-gray-900">Rs {{ item.price }} per day</p>
               <div class="showcase-rating">
                 {% if item.average_rating %}
@@ -170,10 +166,6 @@ prev.addEventListener("click", goPrev);
                         {% endif %}
                     {% endfor %}
                 {% else %}
-                    <!-- If there are no ratings -->
-                    {% for i in "12345" %}
-                        <i class="fa fa-star" id="star" style="color: grey;"></i>
-                    {% endfor %}
                     &nbsp;<span>No ratings</span>
                 {% endif %}
             </div>
@@ -200,8 +192,8 @@ prev.addEventListener("click", goPrev);
           <img class="h-48 w-full object-cover object-center rounded-t-lg" src="{{ item.image.url }}" alt="{{ item.name }} Image" />
           <div class="p-4">
             <h2 class="mb-2 text-lg font-medium text-black dark:text-gray-900">{{ item.name }}</h2>
-            <p class="mb-2 text-base text-black dark:text-gray-700">{{ item.description }}</p>
-            <div class="flex items-center">
+            <p class="mb-2 text-base text-black dark:text-gray-700">{{ item.Category }}</p>
+            <div>
               <p class="mr-2 text-lg font-semibold text-black dark:text-gray-900">Rs {{ item.price }} per day</p>
               <div class="showcase-rating">
                 {% if item.average_rating %}
@@ -214,10 +206,6 @@ prev.addEventListener("click", goPrev);
                         {% endif %}
                     {% endfor %}
                 {% else %}
-                    <!-- If there are no ratings -->
-                    {% for i in "12345" %}
-                        <i class="fa fa-star" id="star" style="color: grey;"></i>
-                    {% endfor %}
                     &nbsp;<span>No ratings</span>
                 {% endif %}
             </div>
