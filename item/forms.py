@@ -27,6 +27,24 @@ class NewItemForm(forms.ModelForm):
             'qr': forms.ClearableFileInput(attrs={'class': f'{INPUT_CLASSES} bg-blue-500 text-white'}),
         }
 
+    def clean_image(self):
+        image = self.cleaned_data.get('image')
+
+        if not image:
+            raise forms.ValidationError("Please select an image.")
+        
+        return image
+    
+    def clean_qr(self):
+        qr = self.cleaned_data.get('qr')
+
+        if not qr:
+            raise forms.ValidationError("Please select a QR image.")
+        
+        return qr
+    
+    
+
 
 class EditItemForm(forms.ModelForm):
     class Meta:
@@ -48,7 +66,21 @@ class EditItemForm(forms.ModelForm):
             'qr': forms.ClearableFileInput(attrs={'class': f'{INPUT_CLASSES} bg-blue-500 text-white'}),
         }
 
+    def clean_image(self):
+        image = self.cleaned_data.get('image')
+
+        if not image:
+            raise forms.ValidationError("Please select an image.")
         
+        return image
+    
+    def clean_qr(self):
+        qr = self.cleaned_data.get('qr')
 
-
-
+        if not qr:
+            raise forms.ValidationError("Please select a QR image.")
+        
+        return qr
+    
+    
+    

@@ -80,7 +80,14 @@
                     <input id="link-checkbox" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
                     <label for="link-checkbox" class="ms-2 text-sm font-medium text-gray-black dark:text-black">I agree with the <a href="{%url 'core:terms'%}" class="text-blue-600 dark:text-blue-500 hover:underline">terms and conditions</a>.</label>
                 </div>
-                
+                {% if form.errors or form.non_field_errors %}
+                <div class="mt-2 p-4 bg-red-100 rounded-xl">
+                    {% for field in form %}
+                        {{ field.errors }}
+                    {% endfor %}
+                    {{ form.non_field_errors }}
+                </div>
+            {% endif %}
                 <button class="mt-6 py-3 px-6 text-sm bg-blue-500 hover:bg-blue-700 text-gray-50 font-bold rounded-full" type="submit">+ Add Post</button>
             </form>
         </div>
