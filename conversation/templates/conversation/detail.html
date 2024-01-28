@@ -6,7 +6,7 @@
         <h1 class="mb-6 text-3xl">Conversation History</h1>
         <hr class="border-b-2 border-gray-400 mb-6">
 
-        <div class="space-y-6 max-h-96 overflow-y-auto">
+        <div id="conversationContainer" class="space-y-6 max-h-96 overflow-y-auto">
             {% for message in conversation.messages.all %}
                 <div class="{% if message.created_by == request.user %}flex justify-end items-center{% else %}flex items-center{% endif %}">
                     <div class="p-4 max-w-xs rounded-lg {% if message.created_by == request.user %}bg-blue-600 text-white self-end{% else %}bg-gray-200 self-start{% endif %} border border-gray-300">
@@ -18,13 +18,26 @@
                 </div>
             {% endfor %}
         </div>
-        
-        <form method="post" action="." class="mt-6">
+
+        <form id="messageForm" method="post" action="." class="mt-6 bg-white">
             {% csrf_token %}
-            <div class="flex items-center border border-gray-300 rounded-lg">
-                <textarea name="content" class="w-full rounded-lg border-none p-2 mr-2 focus:outline-none focus:ring focus:border-blue-300" placeholder="Type your message"></textarea>
+            <div class="px-6 flex items-center border rounded-lg">
+                <textarea id="messageInput" name="content" class="w-full rounded-lg border-none p-2 mr-2 focus:outline-none" placeholder="Type your message"></textarea>
                 <button type="submit" class="py-2 px-6 text-sm bg-teal-500 hover:bg-teal-700 rounded-lg text-white transition duration-300 ease-in-out">Send</button>
             </div>
         </form>
     </div>
+
+    <script>
+        // Scroll to the bottom of the conversationContainer
+        var conversationContainer = document.getElementById('conversationContainer');
+        conversationContainer.scrollTop = conversationContainer.scrollHeight;
+
+        document.getElementById('messageInput').addEventListener('keydown', function (e) {
+            if (e.key === 'Enter' && !e.shiftKey) {
+                e.preventDefault();
+                document.getElementById('messageForm').submit();
+            }
+        });
+    </script>
 {% endblock %}
