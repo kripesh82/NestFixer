@@ -22,7 +22,11 @@ class EditProfileForm(UserChangeForm):
         super().__init__(*args, **kwargs)
         # Customize form fields if needed
         self.fields['username'].widget.attrs['class'] = 'w-full py-4 px-6 rounded-xl'
+        self.fields['username'].widget.attrs['placeholder'] = 'Enter your username'
+
         self.fields['email'].widget.attrs['class'] = 'w-full py-4 px-6 rounded-xl'
+        self.fields['email'].widget.attrs['placeholder'] = 'Enter your email'
+
         
         # Check for the correct field names for password change
         if 'password' in self.fields:

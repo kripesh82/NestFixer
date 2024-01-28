@@ -13,12 +13,12 @@ class NewItemForm(forms.ModelForm):
 
         widgets = {
             'Category': forms.Select(attrs={'class': SELECT_CLASSES}),
-            'name': forms.TextInput(attrs={'class': INPUT_CLASSES, 'placeholder': 'Enter item name'}),
-            'location': forms.TextInput(attrs={'class': INPUT_CLASSES, 'placeholder': 'Enter location'}),
+            'name': forms.TextInput(attrs={'class': INPUT_CLASSES, 'placeholder': 'Enter Name'}),
+            'location': forms.TextInput(attrs={'class': INPUT_CLASSES, 'placeholder': 'Enter Location'}),
             'description': forms.Textarea(attrs={'class': f'{INPUT_CLASSES} resize-none', 'placeholder': 'Enter post description'}),  
             'price': forms.NumberInput(attrs={'class': f'{INPUT_CLASSES} text-green-500', 'placeholder': 'Enter Price per Day'}),
             'image': forms.ClearableFileInput(attrs={'class': f'{INPUT_CLASSES} bg-blue-500 text-white'}),
-            'phone_number': forms.TextInput(attrs={'class': INPUT_CLASSES, 'placeholder': 'Enter phone number'}),
+            'phone_number': forms.TextInput(attrs={'class': INPUT_CLASSES, 'placeholder': 'Enter phonenumber'}),
             'email': forms.EmailInput(attrs={'class': INPUT_CLASSES, 'placeholder': 'Enter email'}),
             'is_available': forms.CheckboxInput(attrs={'class': CHECKBOX_CLASSES}),
             'is_negotiable': forms.CheckboxInput(attrs={'class': CHECKBOX_CLASSES}),
