@@ -105,7 +105,7 @@
                                             {% endfor %}
                                             <span class="text-gray-400 text-xs">{{ item.average_rating|floatformat:2 }}/5</span>
                                         {% else %}
-                                            <span class="text-gray-400 text-xs">No ratings yet</span>
+                                            <span class="text-gray-400 text-xs">&nbsp;</span>
                                         {% endif %}
                                     </div>
                                     <p class="text-amber-600 font-semibold text-2xl">Rs. {{ item.price }} per day</p>
