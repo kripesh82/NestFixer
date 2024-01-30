@@ -48,8 +48,8 @@
   }
 
   .form_parent {
-    display: flex;
-    flex-flow: column wrap;
+    /* display: flex;
+    flex-flow: column wrap; */
     gap: 2vmin;
   }
 
@@ -111,8 +111,8 @@
   }
 
   .comment_box {
-    display: flex;
-    flex-flow: column wrap;
+    /* display: flex;
+    flex-flow: column wrap; */
     width: 600px;
   }
 
@@ -126,59 +126,68 @@
 
 </style>
 <body>
-
-  <div class="form_parent">
-    
-    <form method="Post">
-      {% csrf_token %}
-      <div class="rating">
-        <input type="radio" id="star5" name="rating" value="5" />
-        <label class="star" for="star5" title="Awesome" aria-hidden="true"></label>
-        <input type="radio" id="star4" name="rating" value="4" />
-        <label class="star" for="star4" title="Great" aria-hidden="true"></label>
-        <input type="radio" id="star3" name="rating" value="3" />
-        <label class="star" for="star3" title="Very good" aria-hidden="true"></label>
-        <input type="radio" id="star2" name="rating" value="2" />
-        <label class="star" for="star2" title="Good" aria-hidden="true"></label>
-        <input type="radio" id="star1" name="rating" value="1" />
-        <label class="star" for="star1" title="Bad" aria-hidden="true"></label>
+  <div>
+      <div class="flex justify-center">
+      <h1 class="text-blue-900 font-medium text-xl">Ratings and Reviews</h1>
       </div>
-      <div class="comment_box">
-        <textarea name="item_review" placeholder="Write Reviews about the Service here" rows="6" cols="50" id="review-text" required></textarea>
-        <input type="submit" class="post_btn" value="Post">
-      </div>
-    </form>
+      <div class="form_parent">
+        
+        <form method="Post">
+          {% csrf_token %}
+          <div class="flex flex-start">
+            <div class="rating">
+            <input type="radio" id="star5" name="rating" value="5" />
+            <label class="star" for="star5" title="Awesome" aria-hidden="true"></label>
+            <input type="radio" id="star4" name="rating" value="4" />
+            <label class="star" for="star4" title="Great" aria-hidden="true"></label>
+            <input type="radio" id="star3" name="rating" value="3" />
+            <label class="star" for="star3" title="Very good" aria-hidden="true"></label>
+            <input type="radio" id="star2" name="rating" value="2" />
+            <label class="star" for="star2" title="Good" aria-hidden="true"></label>
+            <input type="radio" id="star1" name="rating" value="1" />
+            <label class="star" for="star1" title="Bad" aria-hidden="true"></label>
+            </div>
+          </div>
+          <div class="comment_box">
+            <textarea name="item_review" placeholder="Write Reviews about the Service here" rows="6" cols="50" id="review-text" required></textarea>
+            <input type="submit" class="post_btn" value="Post">
+          </div>
+        </form>
 
-    {% for x in reviews %}
-    <div class="comment_body">
-      <div class="comment_user">
-        <div class="user_rat_info">
-          <h1> @{{x.user}}</h1>
-          <div class="rating_star">
-            {% if x.rating > 0 %}
-            <i class="fa fa-star {% if x.rating  < 1 %} no-checked {% else %} checked {% endif %}" id="check-star"></i>
-            <i class="fa fa-star {% if x.rating  < 2 %} no-checked {% else %} checked {% endif %}" id="check-star"></i>
-            <i class="fa fa-star {% if x.rating  < 3 %} no-checked {% else %} checked {% endif %}" id="check-star"></i>
-            <i class="fa fa-star {% if x.rating  < 4 %} no-checked {% else %} checked {% endif %}" id="check-star"></i>
-            <i class="fa fa-star {% if x.rating  < 5 %} no-checked {% else %} checked {% endif %}" id="check-star"></i>
-            <hr>
-            {% else %}
-            <i class="fa fa-star" id="star"></i>
-            <i class="fa fa-star" id="star"></i>
-            <i class="fa fa-star" id="star"></i>
-            <i class="fa fa-star" id="star"></i>
-            <i class="fa fa-star" id="star"></i>
-            &nbsp;<span>No ratings</span>
-            <hr>
-            {% endif %}
+        {% for x in reviews %}
+        <div class="border-b-2 border-gray-300 rounded-sm m-8 p-2  ">
+          <div class="comment_body">
+          <div class="comment_user">
+            <div class="user_rat_info">
+              <h1> @{{x.user}}</h1>
+              <div class="rating_star"  style="margin-top: 8px;">
+                {% if x.rating > 0 %}
+                <i class="fa fa-star {% if x.rating  < 1 %} no-checked {% else %} checked {% endif %}" id="check-star"></i>
+                <i class="fa fa-star {% if x.rating  < 2 %} no-checked {% else %} checked {% endif %}" id="check-star"></i>
+                <i class="fa fa-star {% if x.rating  < 3 %} no-checked {% else %} checked {% endif %}" id="check-star"></i>
+                <i class="fa fa-star {% if x.rating  < 4 %} no-checked {% else %} checked {% endif %}" id="check-star"></i>
+                <i class="fa fa-star {% if x.rating  < 5 %} no-checked {% else %} checked {% endif %}" id="check-star"></i>
+                <hr>
+                {% else %}
+                <i class="fa fa-star" id="star"></i>
+                <i class="fa fa-star" id="star"></i>
+                <i class="fa fa-star" id="star"></i>
+                <i class="fa fa-star" id="star"></i>
+                <i class="fa fa-star" id="star"></i>
+                &nbsp;<span>No ratings</span>
+                <hr>
+                {% endif %}
+              </div>
+            </div>
+          </div>
+          <div class="comment">
+            <span>{{x.review_desp}}</span>
+          </div>
           </div>
         </div>
+        {% endfor %}
       </div>
-      <div class="comment">
-        <span>{{x.review_desp}}</span>
-      </div>
+
     </div>
-    {% endfor %}
-  </div>
 </body>
-</html>
+</html> 
