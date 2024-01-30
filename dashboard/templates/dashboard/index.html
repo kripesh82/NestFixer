@@ -24,9 +24,23 @@ Dashboard
                             <img src="{{ item.image.url }}" class="rounded-t-sm w-full h-48 object-cover object-center">
                         </div>
                         <div class="p-6">
-                            <h2 class="text-2xl">{{ item.name }}</h2>
-                            <p class="text-gray-500">{{ item.Category }}</p>
-                            <p class="text-gray-500">Price: Rs {{ item.price }} per day</p>
+                            <h2 class="font-bold text-xl mb-1">{{ item.name }}</h2>
+                            <p class="text-gray-700">{{ item.Category }}</p>
+                            <div class="showcase-rating mb-1">
+                                {% if item.average_rating %}
+                                    {% for i in "12345" %}
+                                        {% if i|add:"0" <= item.average_rating %}
+                                            <i class="fa fa-star checked" id="check-star" style="color: gold;"></i>
+                                        {% else %}
+                                            <i class="fa fa-star" id="check-star" style="color: rgb(228, 227, 227);"></i>
+                                        {% endif %}
+                                    {% endfor %}
+                                    <span class="text-gray-400 text-xs">{{ item.average_rating|floatformat:2 }}/5</span>
+                                {% else %}
+                                    <span class="text-gray-400 text-xs">No ratings yet</span>
+                                {% endif %}
+                            </div>
+                            <p class="text-amber-600 font-semibold text-2xl">Rs. {{ item.price }} per day</p>
                         </div>
                     </a>
                 </div>
